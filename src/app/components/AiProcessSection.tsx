@@ -63,17 +63,15 @@ const visaServices = [
 
 export default function AiProcessSection() {
   return (
-    <section style={{ background: "#ffffff", padding: "60px 20px" }}>
+    <section style={{ background: "#ffffff", padding: "60px 0" }}>
       <div
+        className="container-custom ai-grid"
         style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
           display: "grid",
           gridTemplateColumns: "1fr 1fr 1fr",
           gap: "40px",
           alignItems: "center",
         }}
-        className="ai-grid"
       >
         {/* Left: AI-Powered Smart Process */}
         <div>

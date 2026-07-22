@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Globe,
@@ -57,42 +58,24 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [activeSection, setActiveSection] = useState<string>("hero");
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setScrolled(scrollY > 20);
-
-      const sections = ["hero", "who-we-are", "services", "countries", "process", "blog", "contact"];
-      let current = "";
-      
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          // Adjust 120px offset to trigger active state just before it hits the top
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 120) {
-            current = section;
-          }
-        }
-      }
-      
-      if (current) {
-        setActiveSection(current);
-      } else if (scrollY < 100) {
-        setActiveSection("hero");
-      }
+      setScrolled(window.scrollY > 20);
     };
 
     window.addEventListener("scroll", handleScroll);
     handleScroll(); // Initialize on mount
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith("#")) {
       e.preventDefault();
+      
       const id = href.substring(1);
       const element = document.getElementById(id);
       if (element) {
@@ -161,10 +144,7 @@ export default function Navbar() {
           }}
         />
 
-        <div
-          className="container-custom"
-          style={{ width: "100%", maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}
-        >
+        <div className="container-custom">
           <div
             style={{
               display: "flex",
@@ -222,7 +202,7 @@ export default function Navbar() {
               style={{ alignItems: "center", gap: "24px" }}
             >
               {navLinks.map((link) => {
-                const isActive = activeSection === link.href.substring(1);
+                const isActive = pathname === link.href;
                 
                 return (
                   <div
@@ -392,7 +372,7 @@ export default function Navbar() {
             >
               <div style={{ padding: "16px 24px" }}>
                 {navLinks.map((link) => {
-                  const isActive = activeSection === link.href.substring(1);
+                  const isActive = pathname === link.href;
                   return (
                     <a
                       key={link.label}

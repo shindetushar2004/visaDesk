@@ -45,17 +45,15 @@ export default function ContactSection() {
   };
 
   return (
-    <section style={{ background: "#ffffff", padding: "80px 40px" }}>
+    <section style={{ background: "#ffffff", padding: "80px 0" }}>
       <div
+        className="container-custom contact-grid"
         style={{
-          maxWidth: "1440px",
-          margin: "0 auto",
           display: "grid",
           gridTemplateColumns: "240px 1fr 500px",
           gap: "60px",
           alignItems: "start",
         }}
-        className="contact-grid"
       >
 
         {/* ─── LEFT: Get in Touch ─── */}

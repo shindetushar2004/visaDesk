@@ -27,7 +27,7 @@ const hoverLink = (enter: boolean, e: React.MouseEvent<HTMLAnchorElement>) => {
 export default function Footer() {
   return (
     <footer style={{ background: "#0b1120", color: "white", paddingTop: "56px" }}>
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 32px" }}>
+      <div className="container-custom">
 
         {/* ── Main Grid: 5 columns ── */}
         <div

@@ -43,7 +43,7 @@ export default function StatsSection() {
     <section
       style={{
         background: "linear-gradient(90deg, #020919 0%, #071e3d 35%, #0c3260 65%, #071e3d 100%)",
-        padding: "90px 24px",
+        padding: "90px 0",
         position: "relative",
         overflow: "hidden",
       }}
@@ -62,7 +62,7 @@ export default function StatsSection() {
         }}
       />
 
-      <div style={{ maxWidth: "1440px", margin: "0 auto", position: "relative", zIndex: 1 }}>
+      <div className="container-custom" style={{ position: "relative", zIndex: 1 }}>
         <div
           style={{
             display: "grid",

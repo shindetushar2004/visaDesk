@@ -2,69 +2,65 @@
 
 import { motion } from "framer-motion";
 import {
-  Globe2,
-  Headphones,
-  CloudUpload,
+  Globe,
+  Headset,
+  Cloud,
+  ArrowUp,
   Cpu,
-  Building2,
+  Landmark,
   Check,
 } from "lucide-react";
 
 const steps = [
   {
-    icon: <Globe2 size={24} color="#1a56db" />,
+    icon: <Globe size={46} color="#1d4ed8" strokeWidth={2.2} />,
     number: "01",
     title: "Choose Country",
     desc: "Select your preferred destination country",
-    bg: "white",
-    border: "2px solid #eff6ff",
-    shadow: "0 8px 20px rgba(26, 86, 219, 0.08)",
   },
   {
-    icon: <Headphones size={24} color="#1a56db" />,
+    icon: <Headset size={46} color="#1d4ed8" fill="#1d4ed8" strokeWidth={1} />,
     number: "02",
     title: "Free Consultation",
     desc: "Get expert guidance from our consultants",
-    bg: "white",
-    border: "2px solid #eff6ff",
-    shadow: "0 8px 20px rgba(26, 86, 219, 0.08)",
   },
   {
-    icon: <CloudUpload size={24} color="#1a56db" />,
+    icon: (
+      <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <Cloud size={52} color="#1d4ed8" fill="#1d4ed8" strokeWidth={1} />
+        <ArrowUp size={24} color="white" strokeWidth={4} style={{ position: "absolute", top: "14px" }} />
+      </div>
+    ),
     number: "03",
     title: "Upload Documents",
     desc: "Submit required documents securely online",
-    bg: "white",
-    border: "2px solid #eff6ff",
-    shadow: "0 8px 20px rgba(26, 86, 219, 0.08)",
   },
   {
-    icon: <Cpu size={24} color="#1a56db" />,
+    icon: (
+      <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <Cpu size={52} color="#1d4ed8" strokeWidth={2.2} />
+        <span style={{ position: "absolute", fontWeight: 800, fontSize: "15px", color: "#1d4ed8", marginTop: "2px" }}>AI</span>
+      </div>
+    ),
     number: "04",
     title: "AI Verification",
     desc: "AI-powered verification and document review",
-    bg: "white",
-    border: "2px solid #eff6ff",
-    shadow: "0 8px 20px rgba(26, 86, 219, 0.08)",
   },
   {
-    icon: <Building2 size={24} color="#1a56db" />,
+    icon: <Landmark size={46} color="#1d4ed8" fill="#1d4ed8" strokeWidth={1} />,
     number: "05",
     title: "Embassy Submission",
     desc: "We submit your application to the embassy",
-    bg: "white",
-    border: "2px solid #eff6ff",
-    shadow: "0 8px 20px rgba(26, 86, 219, 0.08)",
   },
   {
-    icon: <Check size={24} color="white" />,
+    icon: (
+      <div style={{ width: "54px", height: "54px", background: "#3bba71", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <Check size={36} color="white" strokeWidth={4} />
+      </div>
+    ),
     number: "06",
     title: "Visa Approved",
     desc: "Receive your visa and start your journey",
-    bg: "#10b981",
-    border: "2px solid #10b981",
-    shadow: "0 8px 20px rgba(16, 185, 129, 0.25)",
-    isLast: true,
   },
 ];
 
@@ -72,57 +68,59 @@ export default function JourneySection() {
   return (
     <section
       style={{
-        background: "#ffffff",
-        padding: "80px 20px",
+        background: "#fcfcfc",
+        padding: "100px 0",
+        position: "relative",
       }}
     >
-      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+      <div className="container-custom">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          style={{ textAlign: "center", marginBottom: "64px" }}
+          style={{ textAlign: "center", marginBottom: "80px" }}
         >
           <div
             style={{
               display: "inline-flex",
               alignItems: "center",
-              gap: "12px",
+              gap: "16px",
             }}
           >
-            {/* Left Line with Dot */}
-            <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+            {/* Left Decorative Line */}
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
               <div
                 style={{
-                  height: "1px",
-                  width: "50px",
-                  background: "linear-gradient(to right, transparent, #1a56db)",
+                  height: "2px",
+                  width: "60px",
+                  background: "linear-gradient(to right, transparent, #1d4ed8)",
                 }}
               />
-              <div style={{ width: "4px", height: "4px", borderRadius: "50%", background: "#1a56db" }} />
+              <div style={{ width: "5px", height: "5px", background: "#1d4ed8", transform: "rotate(45deg)" }} />
             </div>
 
             <h2
               style={{
-                fontSize: "26px",
-                fontWeight: "700",
+                fontSize: "36px",
+                fontWeight: "800",
                 color: "#0f172a",
                 margin: 0,
+                letterSpacing: "-0.5px",
               }}
             >
               Your Journey Begins Here
             </h2>
 
-            {/* Right Line with Dot */}
-            <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-              <div style={{ width: "4px", height: "4px", borderRadius: "50%", background: "#1a56db" }} />
+            {/* Right Decorative Line */}
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <div style={{ width: "5px", height: "5px", background: "#1d4ed8", transform: "rotate(45deg)" }} />
               <div
                 style={{
-                  height: "1px",
-                  width: "50px",
-                  background: "linear-gradient(to left, transparent, #1a56db)",
+                  height: "2px",
+                  width: "60px",
+                  background: "linear-gradient(to left, transparent, #1d4ed8)",
                 }}
               />
             </div>
@@ -133,14 +131,13 @@ export default function JourneySection() {
         <div
           style={{
             position: "relative",
-            minHeight: "220px",
           }}
         >
           {/* Connector Wavy SVG Line */}
           <div
             style={{
               position: "absolute",
-              top: "36px",
+              top: "55px",
               left: "40px",
               right: "40px",
               height: "40px",
@@ -157,19 +154,19 @@ export default function JourneySection() {
               style={{ display: "block" }}
             >
               <path
-                d="M 0,15 C 50,0 50,30 91.6,15 C 133.3,0 133.3,30 183.3,15 C 233.3,0 233.3,30 275,15 C 316.6,0 316.6,30 366.6,15 C 416.6,0 416.6,30 458.3,15 C 500,0 500,30 550,15 C 600,0 600,30 641.6,15 C 683.3,0 683.3,30 733.3,15 C 783.3,0 783.3,30 825,15 C 866.6,0 866.6,30 916.6,15 C 966.6,0 966.6,30 1008.3,15 C 1050,0 1050,30 1100,15"
+                d="M 0,15 L 91.6,15 C 137.4,15 137.4,25 183.3,25 C 229.2,25 229.2,15 275,15 C 320.8,15 320.8,25 366.6,25 C 412.4,25 412.4,15 458.3,15 C 504.1,15 504.1,25 550,25 C 595.8,25 595.8,15 641.6,15 C 687.4,15 687.4,25 733.3,25 C 779.1,25 779.1,15 825,15 C 870.8,15 870.8,25 916.6,25 C 962.4,25 962.4,15 1008.3,15 L 1100,15"
                 fill="none"
-                stroke="#bfdbfe"
+                stroke="#bae6fd"
                 strokeWidth="2.5"
-                opacity="0.8"
               />
-              {/* Connector dots between circles */}
-              {[91.6, 275, 458.3, 641.6, 825, 1008.3].map((cx, idx) => (
-                <circle key={idx} cx={cx} cy="15" r="3.5" fill="white" stroke="#3b82f6" strokeWidth="2.5" />
+              {/* Connector dots between steps */}
+              {[183.3, 366.6, 550, 733.3, 916.6].map((cx, idx) => (
+                <circle key={idx} cx={cx} cy="25" r="3.5" fill="white" stroke="#7dd3fc" strokeWidth="2" />
               ))}
             </svg>
           </div>
 
+          {/* Grid of Steps */}
           <div
             style={{
               display: "grid",
@@ -194,22 +191,21 @@ export default function JourneySection() {
                   textAlign: "center",
                 }}
               >
-                {/* Circle Icon Badge */}
+                {/* Large White Circle with Glow */}
                 <motion.div
-                  whileHover={{ scale: 1.08, y: -4 }}
+                  whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.2 }}
                   style={{
-                    width: "76px",
-                    height: "76px",
+                    width: "110px",
+                    height: "110px",
                     borderRadius: "50%",
-                    background: step.bg,
-                    border: step.border,
+                    background: "#ffffff",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    boxShadow: step.shadow,
+                    boxShadow: "0 0 25px rgba(56, 189, 248, 0.2), 0 0 0 6px #f4f9ff, 0 10px 25px rgba(0,0,0,0.03)",
                     cursor: "default",
-                    marginBottom: "16px",
+                    marginBottom: "24px",
                   }}
                 >
                   {step.icon}
@@ -218,10 +214,10 @@ export default function JourneySection() {
                 {/* Step Number */}
                 <div
                   style={{
-                    fontSize: "13px",
-                    color: "#1a56db",
+                    fontSize: "17px",
+                    color: "#1d4ed8",
                     fontWeight: "800",
-                    marginBottom: "8px",
+                    marginBottom: "10px",
                   }}
                 >
                   {step.number}
@@ -230,10 +226,10 @@ export default function JourneySection() {
                 {/* Title */}
                 <h4
                   style={{
-                    fontSize: "14px",
+                    fontSize: "16px",
                     fontWeight: "700",
                     color: "#0f172a",
-                    marginBottom: "6px",
+                    marginBottom: "8px",
                     lineHeight: "1.3",
                   }}
                 >
@@ -243,10 +239,10 @@ export default function JourneySection() {
                 {/* Description */}
                 <p
                   style={{
-                    fontSize: "12px",
+                    fontSize: "13px",
                     color: "#64748b",
-                    lineHeight: "1.4",
-                    maxWidth: "150px",
+                    lineHeight: "1.5",
+                    maxWidth: "160px",
                     margin: 0,
                   }}
                 >
@@ -259,18 +255,19 @@ export default function JourneySection() {
       </div>
 
       <style>{`
-        @media (max-width: 992px) {
+        @media (max-width: 1024px) {
           .wavy-line-container {
             display: none !important;
           }
           .steps-grid {
             grid-template-columns: repeat(3, 1fr) !important;
-            gap: 32px 16px !important;
+            gap: 56px 24px !important;
           }
         }
         @media (max-width: 600px) {
           .steps-grid {
             grid-template-columns: repeat(2, 1fr) !important;
+            gap: 48px 16px !important;
           }
         }
       `}</style>

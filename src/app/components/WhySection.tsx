@@ -96,17 +96,15 @@ const mapCountries = [
 
 export default function WhySection() {
   return (
-    <section style={{ background: "#f8fafc", padding: "70px 24px" }}>
+    <section style={{ background: "#f8fafc", padding: "70px 0" }}>
       <div
+        className="container-custom why-grid"
         style={{
-          maxWidth: "1380px",
-          margin: "0 auto",
           display: "grid",
           gridTemplateColumns: "1.1fr 1.2fr",
           gap: "32px",
           alignItems: "flex-start",
         }}
-        className="why-grid"
       >
         {/* ─── LEFT: Why VisaDesk ─── */}
         <div style={{ display: "flex", flexDirection: "column" }}>

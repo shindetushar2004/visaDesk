@@ -5,15 +5,8 @@ import { ArrowRight, Calendar } from "lucide-react";
 
 export default function CTASection() {
   return (
-    <section style={{ padding: "80px 48px", background: "#f8fafc" }}>
-      <div
-        style={{
-          maxWidth: "1570px",
-          margin: "0s auto",
-          padding: "0 20px",
-          transform: "translateX(160px)",
-        }}
-      >
+    <section style={{ padding: "80px 0", background: "#f8fafc" }}>
+      <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, scale: 0.97 }}
           whileInView={{ opacity: 1, scale: 1 }}

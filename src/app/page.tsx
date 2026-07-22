@@ -21,7 +21,7 @@ export default function Home() {
       <div id="countries"><StatsSection /></div>
       <div id="blog">
         <section style={{ background: "#f8fafc", padding: "80px 0" }}>
-          <div style={{ width: "100%", maxWidth: "1600px", margin: "0 auto", padding: "0 48px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "48px" }}>
+          <div className="container-custom" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "48px" }}>
             <SuccessStories />
             <LatestInsights />
           </div>

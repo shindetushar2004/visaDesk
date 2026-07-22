@@ -8,7 +8,7 @@ export default function HeroSection() {
   return (
     <section
       style={{
-        background: "linear-gradient(135deg, #eff6ff 0%, #cce3ff 40%, #99c7ff 100%)",
+        background: "linear-gradient(105deg, #eff6ff 0%, #eaf3ff 50%, #ffffff 75%, #ffffff 100%)",
         paddingTop: "120px",
         paddingBottom: "80px",
         minHeight: "700px",
@@ -43,10 +43,8 @@ export default function HeroSection() {
       />
 
       <div
+        className="container-custom"
         style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "0 24px",
           position: "relative",
           zIndex: 10,
         }}
@@ -255,8 +253,8 @@ export default function HeroSection() {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%)",
-                maskImage: "linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%)",
+                WebkitMaskImage: "linear-gradient(to right, transparent 0px, black 120px)",
+                maskImage: "linear-gradient(to right, transparent 0px, black 120px)",
               }}
             >
               <img
@@ -266,7 +264,7 @@ export default function HeroSection() {
                   width: "100%",
                   height: "auto",
                   objectFit: "contain",
-                  mixBlendMode: "multiply",
+                  filter: "contrast(1.2) brightness(1.05)",
                   zIndex: 5,
                 }}
               />
