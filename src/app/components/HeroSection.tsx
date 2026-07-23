@@ -7,6 +7,7 @@ import Image from "next/image";
 export default function HeroSection() {
   return (
     <section
+      className="hero-section-wrapper"
       style={{
         background: "linear-gradient(105deg, #eff6ff 0%, #eaf3ff 50%, #ffffff 75%, #ffffff 100%)",
         paddingTop: "120px",
@@ -59,9 +60,10 @@ export default function HeroSection() {
           className="hero-flex"
         >
           {/* Left Content */}
-          <div style={{ flex: "0 0 50%", maxWidth: "50%", paddingBottom: "60px", zIndex: 10 }}>
+          <div className="hero-left" style={{ flex: "0 0 50%", maxWidth: "50%", paddingBottom: "60px", zIndex: 10 }}>
             {/* Badge */}
             <motion.div
+              className="hero-badge-wrap"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -86,6 +88,7 @@ export default function HeroSection() {
 
             {/* Headline */}
             <motion.h1
+              className="hero-heading"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
@@ -101,6 +104,7 @@ export default function HeroSection() {
               Your Passport to
             </motion.h1>
             <motion.h1
+              className="hero-heading gradient-heading"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
@@ -120,6 +124,7 @@ export default function HeroSection() {
 
             {/* Subtitle */}
             <motion.p
+              className="hero-desc"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -138,6 +143,7 @@ export default function HeroSection() {
 
             {/* Buttons */}
             <motion.div
+              className="hero-buttons"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
@@ -185,6 +191,7 @@ export default function HeroSection() {
 
             {/* Trust badges */}
             <motion.div
+              className="hero-badges"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.4 }}
@@ -196,10 +203,10 @@ export default function HeroSection() {
               }}
             >
               {[
-                { icon: "🛡️", label: "Government\nApproved" },
-                { icon: "🤖", label: "AI\nVerification" },
-                { icon: "🔒", label: "Secure\nDocuments" },
-                { icon: "🏅", label: "99% Success\nRate" },
+                { icon: "🛡️", label: "Government Approved" },
+                { icon: "🤖", label: "AI Verification" },
+                { icon: "🔒", label: "Secure Documents" },
+                { icon: "🏅", label: "99% Success Rate" },
               ].map((badge, i) => (
                 <div
                   key={i}
@@ -241,8 +248,9 @@ export default function HeroSection() {
           </div>
 
           {/* Right side - Main Image */}
-          <div style={{ flex: "0 0 55%", maxWidth: "55%", position: "relative", display: "flex", flexDirection: "column", alignItems: "center", marginLeft: "-5%" }}>
+          <div className="hero-right" style={{ flex: "0 0 55%", maxWidth: "55%", position: "relative", display: "flex", flexDirection: "column", alignItems: "center", marginLeft: "-5%" }}>
             <motion.div
+              className="hero-image-wrapper"
               initial={{ opacity: 0, scale: 0.95, x: 20 }}
               animate={{ opacity: 1, scale: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -279,13 +287,124 @@ export default function HeroSection() {
             flex-direction: column;
             text-align: center;
           }
-          .hero-flex > div:first-child {
+          .hero-left {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
             margin: 0 auto;
+            align-items: center;
             display: flex;
             flex-direction: column;
+            padding-bottom: 24px !important;
+          }
+          .hero-right {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+            margin-left: 0 !important;
+          }
+          .hero-image-wrapper {
+            width: 100% !important;
+            margin-right: 0 !important;
+            -webkit-mask-image: none !important;
+            mask-image: none !important;
+          }
+          .hero-badges {
+            justify-content: center;
+          }
+        }
+        @media (max-width: 768px) {
+          .hero-section-wrapper {
+            padding-top: 100px !important;
+            padding-bottom: 24px !important;
+            min-height: auto !important;
+          }
+          .container-custom {
+            padding: 0 16px !important;
+          }
+          
+          /* Vertical Layout for Mobile (1 column) */
+          .hero-flex {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            text-align: center;
+          }
+          .hero-left, .hero-right {
+            display: contents !important;
+          }
+          
+          .hero-badge-wrap { 
+            order: 1; 
+            margin-bottom: 12px !important; 
+            white-space: nowrap !important;
+            font-size: 11.5px !important;
+            padding: 6px 12px !important;
+            justify-content: center !important;
+          }
+          .hero-heading:not(.gradient-heading) { 
+            order: 2; 
+            font-size: clamp(28px, 8vw, 42px) !important; 
+            line-height: 1.15 !important; 
+            margin-bottom: 0px !important; 
+          }
+          .gradient-heading { 
+            order: 3; 
+            font-size: clamp(28px, 8vw, 42px) !important; 
+            line-height: 1.15 !important; 
+            white-space: nowrap; 
+            margin-bottom: 8px !important; 
+          }
+          .hero-desc { 
+            order: 4; 
+            margin-bottom: 12px !important; 
+            text-align: center; 
+            font-size: 14px !important;
+            padding: 0 8px;
+          }
+          
+          .hero-image-wrapper { 
+            order: 5; 
+            width: 95% !important; 
+            margin: 0 auto 12px auto !important; 
+          }
+          
+          .hero-badges { 
+            order: 6; 
+            display: grid !important; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 12px 12px !important; 
+            text-align: center; 
+            width: 100%; 
+            margin-bottom: 16px !important;
+          }
+          .hero-badges > div { 
+            justify-content: flex-start; 
+            flex-direction: row;
             align-items: center;
+            gap: 8px !important;
+          }
+          .hero-badges > div > div:last-child {
+            font-size: 10px !important;
+            white-space: nowrap !important;
           }
 
+          .hero-buttons { 
+            order: 7; 
+            flex-direction: row !important; 
+            width: 95%; 
+            margin: 0 auto 20px auto !important;
+            gap: 8px !important; 
+          }
+          .hero-buttons > button { 
+            flex: 1; 
+            padding: 12px 0 !important; 
+            font-size: 14px !important; 
+            justify-content: center; 
+            min-height: 48px;
+          }
+        }
+
+        @media (max-width: 380px) {
+          .hero-buttons { flex-direction: column !important; width: 100%; }
         }
       `}</style>
     </section>

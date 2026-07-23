@@ -26,7 +26,7 @@ const hoverLink = (enter: boolean, e: React.MouseEvent<HTMLAnchorElement>) => {
 
 export default function Footer() {
   return (
-    <footer style={{ background: "#0b1120", color: "white", paddingTop: "56px" }}>
+    <footer className="footer-container" style={{ background: "#0b1120", color: "white", paddingTop: "56px" }}>
       <div className="container-custom">
 
         {/* ── Main Grid: 5 columns ── */}
@@ -41,9 +41,9 @@ export default function Footer() {
         >
 
           {/* ── Col 1: Brand ── */}
-          <div>
+          <div className="brand-col">
             {/* Logo */}
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "14px" }}>
+            <div className="footer-logo-wrap" style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "14px" }}>
               <div style={{
                 width: "38px", height: "38px",
                 background: "linear-gradient(135deg, #1a56db, #1e40af)",
@@ -60,7 +60,7 @@ export default function Footer() {
             </div>
 
             {/* Tagline */}
-            <p style={{
+            <p className="footer-brand-desc" style={{
               fontSize: "12.5px", color: "rgba(255,255,255,0.55)",
               lineHeight: "1.7", maxWidth: "230px", marginBottom: "22px",
             }}>
@@ -68,7 +68,7 @@ export default function Footer() {
             </p>
 
             {/* Social Icons */}
-            <div style={{ display: "flex", gap: "10px" }}>
+            <div className="social-icons-row" style={{ display: "flex", gap: "10px" }}>
               {[Facebook, Linkedin, Instagram, Youtube].map((Icon, i) => (
                 <motion.a
                   key={i} href="#"
@@ -91,64 +91,60 @@ export default function Footer() {
           {/* ── Col 2: Quick Links ── */}
           <div>
             <h4 style={headingStyle}>Quick Links</h4>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "11px" }}>
+            <ul className="desktop-only" style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "11px" }}>
               {["Home", "Who We Are", "Services", "Countries", "Process", "Blog", "Contact"].map((item) => (
                 <li key={item}>
-                  <a
-                    href="#"
-                    style={linkStyle}
-                    onMouseEnter={(e) => hoverLink(true, e)}
-                    onMouseLeave={(e) => hoverLink(false, e)}
-                  >
-                    {item}
-                  </a>
+                  <a href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>{item}</a>
                 </li>
               ))}
             </ul>
+            <div className="mobile-only-flex mobile-quick-links-row">
+              {["Home", "About", "Services", "Process", "Success Stories", "Blog", "Contact"].map((item) => (
+                <a key={item} href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>{item}</a>
+              ))}
+            </div>
           </div>
 
           {/* ── Col 3: Our Services ── */}
           <div>
             <h4 style={headingStyle}>Our Services</h4>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "11px" }}>
+            <ul className="desktop-only" style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "11px" }}>
               {["Tourist Visa", "Business Visa", "Student Visa", "Work Visa", "PR & Immigration", "Dependent Visa", "Corporate Visa", "Medical Visa"].map((item) => (
                 <li key={item}>
-                  <a
-                    href="#"
-                    style={linkStyle}
-                    onMouseEnter={(e) => hoverLink(true, e)}
-                    onMouseLeave={(e) => hoverLink(false, e)}
-                  >
-                    {item}
-                  </a>
+                  <a href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>{item}</a>
                 </li>
               ))}
             </ul>
+            <div className="mobile-only-flex mobile-services-row">
+              {["Tourist Visa", "Student Visa", "Business Visa", "Immigration"].map((item) => (
+                <a key={item} href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>{item}</a>
+              ))}
+            </div>
           </div>
 
           {/* ── Col 4: Popular Countries ── */}
           <div>
             <h4 style={headingStyle}>Popular Countries</h4>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "11px" }}>
+            <ul className="desktop-only" style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "11px" }}>
               {["Canada", "USA", "UK", "Australia", "Germany", "France", "Italy"].map((item) => (
                 <li key={item}>
-                  <a
-                    href="#"
-                    style={linkStyle}
-                    onMouseEnter={(e) => hoverLink(true, e)}
-                    onMouseLeave={(e) => hoverLink(false, e)}
-                  >
-                    {item}
-                  </a>
+                  <a href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>{item}</a>
                 </li>
               ))}
             </ul>
+            <div className="mobile-only-flex mobile-countries-row">
+              <a href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>USA</a>
+              <a href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>Canada</a>
+              <a href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>UK</a>
+              <a href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>Australia</a>
+              <a href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>Germany</a>
+            </div>
           </div>
 
           {/* ── Col 5: Subscribe to Newsletter ── */}
           <div>
             <h4 style={headingStyle}>Subscribe to Newsletter</h4>
-            <p style={{
+            <p className="newsletter-desc" style={{
               fontSize: "12.5px", color: "rgba(255,255,255,0.55)",
               lineHeight: "1.65", marginBottom: "18px",
             }}>
@@ -205,7 +201,7 @@ export default function Footer() {
           className="footer-bottom"
         >
           <div>© 2024 VisaDesk Global. All Rights Reserved.</div>
-          <div style={{ display: "flex", gap: "28px" }}>
+          <div className="footer-links" style={{ display: "flex", gap: "28px" }}>
             {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((item) => (
               <a
                 key={item}
@@ -222,12 +218,43 @@ export default function Footer() {
       </div>
 
       <style>{`
+        .mobile-only-flex, .mobile-only-grid { display: none !important; }
+        
         @media (max-width: 1024px) {
           .footer-grid { grid-template-columns: repeat(3, 1fr) !important; }
         }
-        @media (max-width: 640px) {
-          .footer-grid { grid-template-columns: 1fr 1fr !important; }
-          .footer-bottom { flex-direction: column !important; gap: 14px !important; text-align: center !important; }
+        
+        @media (max-width: 768px) {
+          .desktop-only { display: none !important; }
+          .mobile-only-flex { display: flex !important; }
+          .mobile-only-grid { display: grid !important; }
+          
+          .footer-container { padding-top: 16px !important; }
+          .footer-grid { grid-template-columns: 1fr !important; gap: 12px !important; margin-bottom: 12px !important; }
+          .footer-bottom { flex-direction: column !important; gap: 8px !important; text-align: center !important; padding: 10px 0 !important; }
+          .footer-links { flex-wrap: wrap; justify-content: center; gap: 14px !important; }
+          
+          footer h4 { margin-bottom: 8px !important; }
+          
+          .brand-col { align-items: center !important; text-align: center !important; }
+          .footer-logo-wrap { margin-bottom: 8px !important; }
+          .footer-brand-desc { 
+            text-align: center !important; 
+            max-width: 100% !important; 
+            margin: 0 auto 10px auto !important; 
+            font-size: 11.5px !important;
+          }
+          .newsletter-desc { margin-bottom: 8px !important; }
+          .social-icons-row { justify-content: center !important; }
+          
+          .mobile-quick-links-row { justify-content: space-between; align-items: center; width: 100%; overflow-x: auto; }
+          .mobile-quick-links-row a { font-size: 11px !important; white-space: nowrap; }
+          
+          .mobile-services-row { justify-content: space-between; align-items: center; width: 100%; overflow-x: auto; }
+          .mobile-services-row a { font-size: 11px !important; white-space: nowrap; }
+          
+          .mobile-countries-row { justify-content: space-between; align-items: center; width: 100%; overflow-x: auto; }
+          .mobile-countries-row a { font-size: 11.5px !important; white-space: nowrap; }
         }
         input::placeholder { color: rgba(255,255,255,0.35); }
       `}</style>

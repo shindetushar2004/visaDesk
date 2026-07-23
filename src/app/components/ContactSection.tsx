@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Clock, Facebook, Linkedin, Instagram, Youtube, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Facebook, Linkedin, Instagram, Youtube, Send, ChevronDown } from "lucide-react";
 
 const contactItems = [
   { Icon: Phone,  line1: "+1 (555) 123-4567",           line2: null },
@@ -44,8 +45,14 @@ export default function ContactSection() {
     e.target.style.boxShadow   = "none";
   };
 
+  const [countryVal, setCountryVal] = useState("");
+  const [countryOpen, setCountryOpen] = useState(false);
+
+  const [visaVal, setVisaVal] = useState("");
+  const [visaOpen, setVisaOpen] = useState(false);
+
   return (
-    <section style={{ background: "#ffffff", padding: "80px 0" }}>
+    <section className="contact-section" style={{ background: "#ffffff", padding: "80px 0" }}>
       <div
         className="container-custom contact-grid"
         style={{
@@ -64,20 +71,20 @@ export default function ContactSection() {
           transition={{ duration: 0.5 }}
           style={{ paddingTop: "4px" }}
         >
-          <h2 style={{
+          <h2 className="contact-heading" style={{
             fontSize: "24px", fontWeight: "700", color: "#0f172a",
             marginBottom: "32px", letterSpacing: "-0.4px", lineHeight: "1.2"
           }}>
             Get in Touch
           </h2>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "24px", marginBottom: "32px" }}>
+          <div className="contact-info-grid" style={{ display: "flex", flexDirection: "column", gap: "24px", marginBottom: "32px" }}>
             {contactItems.map(({ Icon, line1, line2 }, i) => (
-              <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "16px" }}>
-                <div style={{ paddingTop: "2px" }}>
+              <div key={i} className="contact-info-item" style={{ display: "flex", alignItems: "flex-start", gap: "16px" }}>
+                <div className="contact-info-icon" style={{ paddingTop: "2px" }}>
                   <Icon size={18} color="#1a56db" strokeWidth={2} />
                 </div>
-                <div>
+                <div className="contact-info-text">
                   <div style={{ fontSize: "14px", fontWeight: "500", color: "#334155", lineHeight: "1.4" }}>{line1}</div>
                   {line2 && <div style={{ fontSize: "13px", color: "#64748b", marginTop: "4px" }}>{line2}</div>}
                 </div>
@@ -109,6 +116,7 @@ export default function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
+          className="form-container"
         >
           <h2 style={{
             fontSize: "20px", fontWeight: "700", color: "#1a56db",
@@ -137,23 +145,100 @@ export default function ContactSection() {
             </div>
             <div>
               <label style={labelBase}>Country</label>
-              <select style={{ ...inputBase, appearance: "none", cursor: "pointer" } as React.CSSProperties} onFocus={onFocus} onBlur={onBlur}>
-                <option value="">Select Country</option>
-                <option value="us">United States</option>
-                <option value="uk">United Kingdom</option>
-                <option value="ca">Canada</option>
-                <option value="au">Australia</option>
-              </select>
+              
+              {/* Desktop Native Select */}
+              <div className="select-wrapper desktop-select-wrap" style={{ position: "relative" }}>
+                <select defaultValue="" className="contact-select" style={{ ...inputBase, appearance: "none", cursor: "pointer" } as React.CSSProperties} onFocus={onFocus} onBlur={onBlur}>
+                  <option value="" disabled>Select Country</option>
+                  <option value="us">United States</option>
+                  <option value="uk">United Kingdom</option>
+                  <option value="ca">Canada</option>
+                  <option value="au">Australia</option>
+                </select>
+                <div style={{ position: "absolute", right: "12px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none", display: "flex", alignItems: "center" }}>
+                  <ChevronDown size={16} color="#64748b" />
+                </div>
+              </div>
+
+              {/* Mobile Custom Select */}
+              <div className="mobile-select-wrap" style={{ position: "relative" }}>
+                <div 
+                  onClick={() => { setCountryOpen(!countryOpen); setVisaOpen(false); }}
+                  style={{ ...inputBase, display: "flex", justifyContent: "space-between", alignItems: "center", cursor: "pointer" } as React.CSSProperties}
+                  className="mobile-select-input"
+                >
+                  <span style={{ color: "#1e293b", fontSize: "13px" }}>
+                    {countryVal || "Select Country"}
+                  </span>
+                  <ChevronDown size={16} color="#64748b" />
+                </div>
+                
+                {countryOpen && (
+                  <>
+                    <div style={{ position: "fixed", inset: 0, zIndex: 40 }} onClick={() => setCountryOpen(false)} />
+                    <div className="mobile-dropdown-popup">
+                      {["United States", "United Kingdom", "Canada", "Australia"].map((opt) => (
+                        <div 
+                          key={opt}
+                          className="mobile-dropdown-option"
+                          onClick={() => { setCountryVal(opt); setCountryOpen(false); }}
+                        >
+                          {opt}
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
+
             <div>
               <label style={labelBase}>Visa Type</label>
-              <select style={{ ...inputBase, appearance: "none", cursor: "pointer" } as React.CSSProperties} onFocus={onFocus} onBlur={onBlur}>
-                <option value="">Select Visa Type</option>
-                <option value="tourist">Tourist Visa</option>
-                <option value="student">Student Visa</option>
-                <option value="work">Work Visa</option>
-                <option value="business">Business Visa</option>
-              </select>
+
+              {/* Desktop Native Select */}
+              <div className="select-wrapper desktop-select-wrap" style={{ position: "relative" }}>
+                <select defaultValue="" className="contact-select" style={{ ...inputBase, appearance: "none", cursor: "pointer" } as React.CSSProperties} onFocus={onFocus} onBlur={onBlur}>
+                  <option value="" disabled>Select Visa Type</option>
+                  <option value="tourist">Tourist Visa</option>
+                  <option value="student">Student Visa</option>
+                  <option value="work">Work Visa</option>
+                  <option value="business">Business Visa</option>
+                </select>
+                <div style={{ position: "absolute", right: "12px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none", display: "flex", alignItems: "center" }}>
+                  <ChevronDown size={16} color="#64748b" />
+                </div>
+              </div>
+
+              {/* Mobile Custom Select */}
+              <div className="mobile-select-wrap" style={{ position: "relative" }}>
+                <div 
+                  onClick={() => { setVisaOpen(!visaOpen); setCountryOpen(false); }}
+                  style={{ ...inputBase, display: "flex", justifyContent: "space-between", alignItems: "center", cursor: "pointer" } as React.CSSProperties}
+                  className="mobile-select-input"
+                >
+                  <span style={{ color: "#1e293b", fontSize: "13px" }}>
+                    {visaVal || "Select Visa Type"}
+                  </span>
+                  <ChevronDown size={16} color="#64748b" />
+                </div>
+                
+                {visaOpen && (
+                  <>
+                    <div style={{ position: "fixed", inset: 0, zIndex: 40 }} onClick={() => setVisaOpen(false)} />
+                    <div className="mobile-dropdown-popup">
+                      {["Tourist Visa", "Student Visa", "Work Visa", "Business Visa"].map((opt) => (
+                        <div 
+                          key={opt}
+                          className="mobile-dropdown-option"
+                          onClick={() => { setVisaVal(opt); setVisaOpen(false); }}
+                        >
+                          {opt}
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
           </div>
 
@@ -254,14 +339,88 @@ export default function ContactSection() {
       </div>
 
       <style>{`
+        .mobile-select-wrap { display: none; }
+        .desktop-select-wrap { display: block; }
+
         @media (max-width: 1024px) {
           .contact-grid { grid-template-columns: 1fr 1.5fr !important; }
           .contact-illustration { display: none !important; }
         }
         @media (max-width: 768px) {
-          .contact-grid { grid-template-columns: 1fr !important; }
-          .form-grid { grid-template-columns: 1fr !important; }
+          .contact-section { padding: 48px 0 !important; }
+          .contact-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+          .contact-heading { margin-bottom: 24px !important; }
+          
+          /* Contact Info Grid - Mobile */
+          .contact-info-grid {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 12px !important;
+            margin-bottom: 24px !important;
+          }
+          .contact-info-item {
+            flex-direction: row !important;
+            align-items: center !important;
+            text-align: left !important;
+            gap: 12px !important;
+            width: 100%;
+          }
+          .contact-info-icon {
+            padding-top: 0 !important;
+          }
+          
+          /* Send Us A Message Form Grid - Mobile */
+          .form-grid { 
+            grid-template-columns: 1fr 1fr !important; 
+            gap: 12px !important; 
+          }
+          
+          .form-container {
+            border: 1px solid #e2e8f0 !important;
+            padding: 16px !important;
+            border-radius: 16px !important;
+          }
+          
+          /* Form Selects Mobile Adjustments */
+          .mobile-select-wrap { display: block !important; }
+          .desktop-select-wrap { display: none !important; }
+          
+          .mobile-select-input {
+            border: 1px solid #cbd5e1 !important;
+            padding: 13px 16px !important;
+          }
+          
+          .mobile-dropdown-popup {
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%; /* Increased width by ~15% */
+            max-height: 140px; /* Reduce height by ~40% */
+            overflow-y: auto;
+            background: white;
+            border: 1px solid #64748b; /* Clearly visible 1px border */
+            border-radius: 8px; /* Keep existing radius */
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12); /* Keep shadow */
+            z-index: 50;
+          }
+          .mobile-dropdown-option {
+            padding: 8px 12px; /* Reduce vertical padding */
+            font-size: 13px; /* Smaller text size */
+            color: #1e293b;
+            border-bottom: 1px solid #f1f5f9;
+            cursor: pointer;
+          }
+          .mobile-dropdown-option:last-child {
+            border-bottom: none;
+          }
+          .mobile-dropdown-option:active {
+            background: #f8fafc;
+          }
+          
           .form-actions { flex-direction: column !important; }
+          .form-actions > button { width: 100%; justify-content: center; }
+          .form-actions > div { width: 100%; }
         }
       `}</style>
     </section>

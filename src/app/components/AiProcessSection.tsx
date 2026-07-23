@@ -63,7 +63,7 @@ const visaServices = [
 
 export default function AiProcessSection() {
   return (
-    <section style={{ background: "#ffffff", padding: "60px 0" }}>
+    <section className="ai-section" style={{ background: "#ffffff", padding: "60px 0" }}>
       <div
         className="container-custom ai-grid"
         style={{
@@ -104,10 +104,11 @@ export default function AiProcessSection() {
           </motion.div>
 
           {/* Features list */}
-          <div style={{ marginBottom: "24px" }}>
+          <div className="ai-features-list" style={{ marginBottom: "24px" }}>
             {aiFeatures.map((feat, i) => (
               <motion.div
                 key={i}
+                className="ai-feature-card"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -121,6 +122,7 @@ export default function AiProcessSection() {
                 }}
               >
                 <div
+                  className="ai-feature-icon"
                   style={{
                     width: "32px",
                     height: "32px",
@@ -134,8 +136,9 @@ export default function AiProcessSection() {
                 >
                   {feat.icon}
                 </div>
-                <div>
+                <div className="ai-feature-text-wrap">
                   <div
+                    className="ai-feature-title"
                     style={{
                       fontSize: "13px",
                       fontWeight: "600",
@@ -145,7 +148,7 @@ export default function AiProcessSection() {
                   >
                     {feat.title}
                   </div>
-                  <div style={{ fontSize: "12px", color: "#6b7280" }}>
+                  <div className="ai-feature-desc" style={{ fontSize: "12px", color: "#6b7280" }}>
                     {feat.desc}
                   </div>
                 </div>
@@ -271,7 +274,7 @@ export default function AiProcessSection() {
             </h2>
           </motion.div>
 
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <div className="hex-container" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
             {/* Top Row (3) */}
             <div style={{ display: "flex", gap: "10px", zIndex: 3 }}>
               {visaServices.slice(0, 3).map((service, i) => (
@@ -363,8 +366,61 @@ export default function AiProcessSection() {
           }
         }
         @media (max-width: 768px) {
+          .ai-section { padding: 32px 0 !important; }
           .ai-grid {
             grid-template-columns: 1fr !important;
+            gap: 24px !important;
+          }
+          .ai-features-list {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 12px 10px !important;
+          }
+          .ai-feature-card {
+            flex-direction: column !important;
+            align-items: center !important;
+            text-align: center !important;
+            border-bottom: none !important;
+            padding: 10px 6px !important;
+            background: white !important;
+            border-radius: 12px !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
+            border: 1px solid #f3f4f6 !important;
+            min-height: 110px !important;
+            justify-content: flex-start !important;
+            gap: 6px !important;
+          }
+          .ai-feature-icon {
+            margin: 0 auto !important;
+            transform: scale(0.85) !important;
+          }
+          .ai-feature-text-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+          .ai-feature-title {
+            font-size: 11.5px !important;
+            line-height: 1.25 !important;
+            margin-bottom: 4px !important;
+            min-height: 28px !important;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+          .ai-feature-desc {
+            font-size: 10px !important;
+            line-height: 1.25 !important;
+          }
+        }
+        @media (max-width: 389px) {
+          .ai-features-list {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .hex-container {
+            transform: scale(0.85);
+            transform-origin: top center;
           }
         }
       `}</style>

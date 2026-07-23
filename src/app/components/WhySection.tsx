@@ -96,7 +96,7 @@ const mapCountries = [
 
 export default function WhySection() {
   return (
-    <section style={{ background: "#f8fafc", padding: "70px 0" }}>
+    <section className="why-section" style={{ background: "#f8fafc", padding: "70px 0" }}>
       <div
         className="container-custom why-grid"
         style={{
@@ -109,6 +109,7 @@ export default function WhySection() {
         {/* ─── LEFT: Why VisaDesk ─── */}
         <div style={{ display: "flex", flexDirection: "column" }}>
           <motion.h2
+            className="why-heading"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -119,6 +120,7 @@ export default function WhySection() {
           </motion.h2>
 
           <div
+            className="features-grid"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(3, 1fr)",
@@ -129,6 +131,7 @@ export default function WhySection() {
             {features.map((feat, i) => (
               <motion.div
                 key={i}
+                className="why-feature-card"
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -155,24 +158,25 @@ export default function WhySection() {
               >
                 {/* Soft blue circular icon container */}
                 <div
-                  style={{
-                    width: "38px",
-                    height: "38px",
-                    borderRadius: "50%",
-                    background: "#eff6ff",
-                    border: "1px solid #dbeafe",
+                    className="why-icon-wrap"
+                    style={{
+                      width: "38px",
+                      height: "38px",
+                      borderRadius: "50%",
+                      background: "#eff6ff",
+                      border: "1px solid #dbeafe",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     flexShrink: 0,
                     boxShadow: "0 2px 8px rgba(26, 86, 219, 0.06)",
                   }}
-                >
-                  <div style={{ transform: "scale(0.85)" }}>{feat.icon}</div>
-                </div>
-                <div style={{ fontSize: "12px", fontWeight: "700", color: "#1e293b", lineHeight: "1.3" }}>
-                  {feat.title}
-                </div>
+                  >
+                    <div className="why-svg-inner" style={{ transform: "scale(0.85)" }}>{feat.icon}</div>
+                  </div>
+                  <div className="why-feature-title" style={{ fontSize: "12px", fontWeight: "700", color: "#1e293b", lineHeight: "1.3" }}>
+                    {feat.title}
+                  </div>
               </motion.div>
             ))}
           </div>
@@ -208,12 +212,41 @@ export default function WhySection() {
       <style>{`
         @media (max-width: 1024px) {
           .why-grid { grid-template-columns: 1fr !important; }
+          .features-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
         @media (max-width: 768px) {
-          .country-cards-grid { grid-template-columns: repeat(3, 1fr) !important; }
+          .why-section { padding: 32px 0 !important; }
+          .why-heading { margin-top: 16px !important; margin-bottom: 16px !important; }
+          .features-grid { 
+            grid-template-columns: repeat(3, 1fr) !important; 
+            gap: 10px 8px !important;
+          }
+          .why-feature-card {
+            align-items: center !important;
+            text-align: center !important;
+            padding: 12px 6px !important;
+            min-height: 105px !important;
+            gap: 8px !important;
+          }
+          .why-icon-wrap {
+            width: 32px !important;
+            height: 32px !important;
+            margin: 0 auto !important;
+          }
+          .why-svg-inner {
+            transform: scale(0.7) !important;
+          }
+          .why-feature-title {
+            font-size: 11px !important;
+            line-height: 1.25 !important;
+            white-space: normal !important;
+          }
         }
-        @media (max-width: 480px) {
-          .country-cards-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        @media (max-width: 389px) {
+          .features-grid { 
+            grid-template-columns: repeat(2, 1fr) !important; 
+            gap: 12px !important;
+          }
         }
       `}</style>
     </section>

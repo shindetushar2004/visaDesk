@@ -67,6 +67,7 @@ const steps = [
 export default function JourneySection() {
   return (
     <section
+      className="journey-section"
       style={{
         background: "#fcfcfc",
         padding: "100px 0",
@@ -76,6 +77,7 @@ export default function JourneySection() {
       <div className="container-custom">
         {/* Section Header */}
         <motion.div
+          className="journey-header"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -102,6 +104,7 @@ export default function JourneySection() {
             </div>
 
             <h2
+              className="journey-heading"
               style={{
                 fontSize: "36px",
                 fontWeight: "800",
@@ -193,6 +196,7 @@ export default function JourneySection() {
               >
                 {/* Large White Circle with Glow */}
                 <motion.div
+                  className="journey-icon-wrap"
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.2 }}
                   style={{
@@ -213,6 +217,7 @@ export default function JourneySection() {
 
                 {/* Step Number */}
                 <div
+                  className="journey-step-num"
                   style={{
                     fontSize: "17px",
                     color: "#1d4ed8",
@@ -225,6 +230,7 @@ export default function JourneySection() {
 
                 {/* Title */}
                 <h4
+                  className="journey-step-title"
                   style={{
                     fontSize: "16px",
                     fontWeight: "700",
@@ -238,6 +244,7 @@ export default function JourneySection() {
 
                 {/* Description */}
                 <p
+                  className="journey-step-desc"
                   style={{
                     fontSize: "13px",
                     color: "#64748b",
@@ -264,10 +271,43 @@ export default function JourneySection() {
             gap: 56px 24px !important;
           }
         }
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
+          .journey-section { padding: 32px 0 !important; }
+          .journey-header { margin-bottom: 40px !important; }
+          .journey-heading {
+            font-size: clamp(14px, 4.5vw, 36px) !important;
+            white-space: nowrap !important;
+          }
           .steps-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 48px 16px !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 16px 12px !important;
+          }
+          
+          /* Card sizing adjustments for 3 columns on mobile */
+          .journey-icon-wrap {
+            width: 70px !important;
+            height: 70px !important;
+            margin-bottom: 8px !important;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2), 0 0 0 4px #f4f9ff !important;
+          }
+          /* Scale down the inner SVGs and components uniformly */
+          .journey-icon-wrap > * {
+            transform: scale(0.65) !important;
+          }
+          
+          .journey-step-num {
+            font-size: 13px !important;
+            margin-bottom: 4px !important;
+          }
+          .journey-step-title {
+            font-size: 12px !important;
+            line-height: 1.15 !important;
+            margin-bottom: 6px !important;
+            min-height: 28px; /* ensures titles align even if some wrap */
+          }
+          .journey-step-desc {
+            font-size: 10.5px !important;
+            line-height: 1.3 !important;
           }
         }
       `}</style>

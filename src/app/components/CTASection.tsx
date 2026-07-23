@@ -5,7 +5,7 @@ import { ArrowRight, Calendar } from "lucide-react";
 
 export default function CTASection() {
   return (
-    <section style={{ padding: "80px 0", background: "#f8fafc" }}>
+    <section className="cta-section" style={{ padding: "80px 0", background: "#f8fafc" }}>
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, scale: 0.97 }}
@@ -45,6 +45,7 @@ export default function CTASection() {
 
           {/* ── LEFT: Airplane from Image ── */}
           <div
+            className="cta-bg-left"
             style={{
               position: "absolute",
               left: 0,
@@ -64,6 +65,7 @@ export default function CTASection() {
 
           {/* ── RIGHT: Towers from Image ── */}
           <div
+            className="cta-bg-right"
             style={{
               position: "absolute",
               right: 0,
@@ -107,7 +109,9 @@ export default function CTASection() {
                 letterSpacing: "-0.3px",
               }}
             >
-              Let's Build Your Global Future Together
+              <span className="nowrap-mobile">Let's Build Your Global</span>{" "}
+              <br className="mobile-only-br" />
+              <span className="nowrap-mobile">Future Together</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
@@ -128,6 +132,7 @@ export default function CTASection() {
 
             {/* Buttons */}
             <motion.div
+              className="cta-buttons"
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -196,12 +201,67 @@ export default function CTASection() {
       </div>
 
       <style>{`
+        .mobile-only-br {
+          display: none;
+        }
         @media (max-width: 768px) {
+          .cta-section { padding: 32px 0 !important; }
+          .mobile-only-br {
+            display: block;
+          }
+          .nowrap-mobile {
+            white-space: nowrap;
+          }
           .cta-inner {
             flex-direction: column !important;
-            padding: 36px 24px !important;
+            padding: 24px 16px !important;
             border-radius: 18px !important;
             text-align: center !important;
+          }
+          
+          /* Airplane Image - Mobile Fix */
+          .cta-bg-left {
+            height: 170px !important; /* ~20-25% smaller */
+            bottom: auto !important; 
+            top: -70px !important; /* Moved downward 25px */
+            width: 140px !important; /* Prevents overlap with center text */
+            background-position: left top !important; /* Move to corner */
+          }
+          
+          /* Burj Khalifa Image - Mobile Fix */
+          .cta-bg-right {
+            height: 140px !important; /* ~30-40% smaller */
+            top: auto !important;
+            bottom: 0 !important;
+            width: 140px !important; /* Prevents overlap */
+            background-position: right bottom !important; /* Move to corner, fully visible */
+          }
+
+          /* CTA Buttons - Mobile Fix */
+          .cta-buttons {
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            gap: 10px !important;
+            width: 100%;
+            justify-content: center !important;
+          }
+          .cta-buttons > button {
+            flex: 1;
+            width: auto !important;
+            padding: 9px 10px !important; /* Reduced height by ~10-15% */
+            justify-content: center;
+            white-space: nowrap !important;
+            font-size: 14px !important; /* Slightly reduced font size */
+          }
+        }
+        
+        @media (max-width: 359px) {
+          /* Stack buttons ONLY below 360px */
+          .cta-buttons {
+            flex-direction: column !important;
+          }
+          .cta-buttons > button {
+            width: 100% !important;
           }
         }
       `}</style>

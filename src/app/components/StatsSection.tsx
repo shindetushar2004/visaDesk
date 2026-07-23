@@ -1,13 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import React from "react";
+import React, { useRef } from "react";
 import {
   FileText,
   ShieldCheck,
   Globe,
   Award,
   Users,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 const stats = [
@@ -39,8 +41,10 @@ const stats = [
 ];
 
 export default function StatsSection() {
+  const scrollRef = useRef<HTMLDivElement>(null);
   return (
     <section
+      className="stats-section"
       style={{
         background: "linear-gradient(90deg, #020919 0%, #071e3d 35%, #0c3260 65%, #071e3d 100%)",
         padding: "90px 0",
@@ -63,7 +67,24 @@ export default function StatsSection() {
       />
 
       <div className="container-custom" style={{ position: "relative", zIndex: 1 }}>
+        {/* Navigation Arrows for Mobile */}
+        <button className="mobile-nav-btn mobile-nav-left" onClick={() => {
+          if (scrollRef.current) {
+            scrollRef.current.scrollBy({ left: -150, behavior: 'smooth' });
+          }
+        }}>
+          <ChevronLeft size={24} color="#1d4ed8" />
+        </button>
+        <button className="mobile-nav-btn mobile-nav-right" onClick={() => {
+          if (scrollRef.current) {
+            scrollRef.current.scrollBy({ left: 150, behavior: 'smooth' });
+          }
+        }}>
+          <ChevronRight size={24} color="#1d4ed8" />
+        </button>
+
         <div
+          ref={scrollRef}
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(5, 1fr)",
@@ -74,6 +95,7 @@ export default function StatsSection() {
           {stats.map((stat, i) => (
             <motion.div
               key={i}
+              className="stats-card"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -120,8 +142,9 @@ export default function StatsSection() {
               </div>
 
               {/* Typography Group */}
-              <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+              <div className="stats-text-group" style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
                 <div
+                  className="stats-value"
                   style={{
                     fontSize: "32px",
                     fontWeight: "800",
@@ -135,6 +158,7 @@ export default function StatsSection() {
                   {stat.value}
                 </div>
                 <div
+                  className="stats-label"
                   style={{
                     fontSize: "12px",
                     color: "rgba(255, 255, 255, 0.75)",
@@ -151,16 +175,92 @@ export default function StatsSection() {
       </div>
 
       <style>{`
+        .mobile-nav-btn {
+          display: none;
+        }
         @media (max-width: 1100px) {
           .stats-grid {
             grid-template-columns: repeat(3, 1fr) !important;
             gap: 16px !important;
           }
         }
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
+          .stats-section {
+            padding: 32px 0 !important;
+          }
           .stats-grid {
-            grid-template-columns: repeat(1, 1fr) !important;
-            gap: 16px !important;
+            display: flex !important;
+            flex-direction: row !important;
+            overflow-x: auto !important;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            gap: 8px !important;
+            padding: 0 40px 12px 40px !important;
+            margin: 0 -20px !important;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;  /* IE and Edge */
+          }
+          .stats-grid::-webkit-scrollbar {
+            display: none;
+          }
+          .stats-card {
+            flex: 0 0 135px !important;
+            width: 135px !important;
+            height: 190px !important;
+            scroll-snap-align: center;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            text-align: center !important;
+            padding: 20px 10px !important;
+            min-height: unset !important;
+          }
+          .stats-text-group {
+            align-items: center !important;
+            margin-top: 12px !important;
+          }
+          .stats-value {
+            font-size: 24px !important;
+            line-height: 1 !important;
+            margin-bottom: 6px !important;
+          }
+          .stats-label {
+            text-align: center !important;
+            font-size: 11px !important;
+            line-height: 1.35 !important;
+            min-height: 30px !important;
+            display: flex !important;
+            align-items: flex-start !important;
+            justify-content: center !important;
+          }
+          /* Nav Buttons */
+          .mobile-nav-btn {
+            display: flex;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.4);
+            z-index: 10;
+            cursor: pointer;
+            transition: all 0.3s;
+          }
+          .mobile-nav-btn:hover {
+            background: white;
+            box-shadow: 0 4px 15px rgba(29, 78, 216, 0.4);
+          }
+          .mobile-nav-left {
+            left: 0;
+          }
+          .mobile-nav-right {
+            right: 0;
           }
         }
       `}</style>

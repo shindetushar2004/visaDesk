@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import React, { useRef } from "react";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 
 const testimonials = [
@@ -31,16 +32,26 @@ const testimonials = [
 ];
 
 export default function SuccessStories() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  
+  const scrollCarousel = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const scrollAmount = direction === 'left' ? -window.innerWidth : window.innerWidth;
+      scrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
   return (
-    <div style={{ width: "100%", position: "relative", zIndex: 20 }}>
+    <div style={{ width: "100%", position: "relative", zIndex: 20, overflow: "hidden" }}>
       {/* Header */}
       <div
+        className="stories-header"
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
           marginBottom: "32px",
-          marginLeft: "-75  px",
+          marginLeft: 0,
         }}
       >
         <h2
@@ -55,7 +66,7 @@ export default function SuccessStories() {
         </h2>
       </div>
 
-      <div style={{ width: "120%", marginLeft: "-20%" }}>
+      <div className="stories-carousel-wrapper" style={{ width: "100%", marginLeft: 0 }}>
         <div
           style={{
             position: "relative",
@@ -64,34 +75,21 @@ export default function SuccessStories() {
             gap: "20px",
           }}
         >
-          {/* Left Arrow - Circular White Glass Button with Blue Shadow */}
-          <motion.button
-            whileHover={{
-              scale: 1.1,
-              boxShadow: "0 8px 25px rgba(26, 86, 219, 0.3)",
-            }}
-            whileTap={{ scale: 0.95 }}
-            style={{
-              width: "48px",
-              height: "48px",
-              borderRadius: "50%",
-              background: "white",
-              border: "1px solid #e2e8f0",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-              flexShrink: 0,
-              color: "#1a56db",
-              boxShadow: "0 6px 20px rgba(26, 86, 219, 0.18)",
-              transition: "all 0.2s ease",
-            }}
-          >
-            <ChevronLeft size={22} />
-          </motion.button>
+          {/* Left Arrow removed for desktop */}
+
+
+          {/* Mobile Left Arrow */}
+          <button className="mobile-arrow mobile-arrow-left" onClick={() => scrollCarousel('left')}>
+            <ChevronLeft size={24} color="#1a56db" />
+          </button>
+          {/* Mobile Right Arrow */}
+          <button className="mobile-arrow mobile-arrow-right" onClick={() => scrollCarousel('right')}>
+            <ChevronRight size={24} color="#1a56db" />
+          </button>
 
           {/* Cards Container */}
           <div
+            ref={scrollRef}
             className="stories-grid"
             style={{
               display: "grid",
@@ -118,6 +116,7 @@ export default function SuccessStories() {
                   boxShadow: "0 10px 30px rgba(0, 0, 0, 0.05)",
                   position: "relative",
                   display: "flex",
+                  boxSizing: "border-box",
                   flexDirection: "column",
                   overflow: "hidden",
                   minHeight: "340px",
@@ -170,7 +169,7 @@ export default function SuccessStories() {
                       style={{
                         width: "100%",
                         height: "100%",
-                        objectFit: "cover",
+                        objectFit: "contain",
                       }}
                     />
                   </div>
@@ -217,6 +216,7 @@ export default function SuccessStories() {
                 {/* Name & Visa */}
                 <div style={{ zIndex: 1, marginBottom: "20px" }}>
                   <div
+                    className="story-name"
                     style={{
                       fontSize: "19px",
                       fontWeight: "700",
@@ -336,38 +336,99 @@ export default function SuccessStories() {
             ))}
           </div>
 
-          {/* Right Arrow - Circular White Glass Button with Blue Shadow */}
-          <motion.button
-            whileHover={{
-              scale: 1.1,
-              boxShadow: "0 8px 25px rgba(26, 86, 219, 0.3)",
-            }}
-            whileTap={{ scale: 0.95 }}
-            style={{
-              width: "48px",
-              height: "48px",
-              borderRadius: "50%",
-              background: "white",
-              border: "1px solid #e2e8f0",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-              flexShrink: 0,
-              color: "#1a56db",
-              boxShadow: "0 6px 20px rgba(26, 86, 219, 0.18)",
-              transition: "all 0.2s ease",
-            }}
-          >
-            <ChevronRight size={22} />
-          </motion.button>
+          {/* Right Arrow removed for desktop */}
         </div>
       </div>
 
       <style>{`
-        @media (max-width: 900px) {
+        @media (max-width: 1024px) {
           .stories-grid {
-            grid-template-columns: 1fr !important;
+            display: flex !important;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 16px !important;
+            padding-bottom: 24px;
+            -webkit-overflow-scrolling: touch;
+          }
+          .stories-grid > div {
+            min-width: 280px;
+            scroll-snap-align: center;
+          }
+          .mobile-arrow {
+            display: none;
+          }
+        }
+        @media (max-width: 768px) {
+          .stories-header {
+            margin-left: 0 !important;
+          }
+          .stories-carousel-wrapper {
+            width: 100% !important;
+            margin-left: 0 !important;
+          }
+          .stories-grid {
+            width: 100% !important;
+            max-width: 100vw !important;
+            overflow-x: auto !important;
+            overflow-y: hidden !important;
+            padding: 0 0 16px 0 !important;
+            margin: 0 !important;
+            gap: 16px !important;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            -webkit-overflow-scrolling: touch !important;
+            display: flex !important;
+            flex-direction: row !important;
+            scroll-behavior: smooth;
+          }
+          .stories-grid::-webkit-scrollbar {
+            display: none;
+          }
+          .stories-grid > div {
+            flex: 0 0 calc(100% - 32px) !important;
+            min-width: unset !important;
+            scroll-snap-align: center;
+            height: 330px !important;
+            min-height: unset !important;
+            box-sizing: border-box !important;
+          }
+          .stories-grid > div:first-child {
+            margin-left: 16px !important;
+          }
+          .stories-grid > div:last-child {
+            margin-right: 16px !important;
+          }
+          .mobile-arrow {
+            display: flex !important;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            border: 1px solid rgba(255,255,255,0.6);
+            z-index: 10;
+            cursor: pointer;
+            transition: all 0.3s;
+          }
+          .mobile-arrow:hover {
+            background: white;
+            box-shadow: 0 6px 20px rgba(26, 86, 219, 0.3);
+          }
+          .mobile-arrow-left {
+            left: 0px !important;
+          }
+          .mobile-arrow-right {
+            right: 0px !important;
+          }
+          .story-name {
+            font-size: 17px !important;
+            font-weight: 600 !important;
           }
         }
       `}</style>
