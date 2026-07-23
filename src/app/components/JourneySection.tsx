@@ -10,61 +10,64 @@ import {
   Landmark,
   Check,
 } from "lucide-react";
-
-const steps = [
-  {
-    icon: <Globe size={46} color="#1d4ed8" strokeWidth={2.2} />,
-    number: "01",
-    title: "Choose Country",
-    desc: "Select your preferred destination country",
-  },
-  {
-    icon: <Headset size={46} color="#1d4ed8" fill="#1d4ed8" strokeWidth={1} />,
-    number: "02",
-    title: "Free Consultation",
-    desc: "Get expert guidance from our consultants",
-  },
-  {
-    icon: (
-      <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <Cloud size={52} color="#1d4ed8" fill="#1d4ed8" strokeWidth={1} />
-        <ArrowUp size={24} color="white" strokeWidth={4} style={{ position: "absolute", top: "14px" }} />
-      </div>
-    ),
-    number: "03",
-    title: "Upload Documents",
-    desc: "Submit required documents securely online",
-  },
-  {
-    icon: (
-      <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <Cpu size={52} color="#1d4ed8" strokeWidth={2.2} />
-        <span style={{ position: "absolute", fontWeight: 800, fontSize: "15px", color: "#1d4ed8", marginTop: "2px" }}>AI</span>
-      </div>
-    ),
-    number: "04",
-    title: "AI Verification",
-    desc: "AI-powered verification and document review",
-  },
-  {
-    icon: <Landmark size={46} color="#1d4ed8" fill="#1d4ed8" strokeWidth={1} />,
-    number: "05",
-    title: "Embassy Submission",
-    desc: "We submit your application to the embassy",
-  },
-  {
-    icon: (
-      <div style={{ width: "54px", height: "54px", background: "#3bba71", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <Check size={36} color="white" strokeWidth={4} />
-      </div>
-    ),
-    number: "06",
-    title: "Visa Approved",
-    desc: "Receive your visa and start your journey",
-  },
-];
+import { useTranslations } from "next-intl";
 
 export default function JourneySection() {
+  const t = useTranslations("Journey");
+
+  const steps = [
+    {
+      icon: <Globe size={46} color="#1d4ed8" strokeWidth={2.2} />,
+      number: "01",
+      title: t("step1Title"),
+      desc: t("step1Desc"),
+    },
+    {
+      icon: <Headset size={46} color="#1d4ed8" fill="#1d4ed8" strokeWidth={1} />,
+      number: "02",
+      title: t("step2Title"),
+      desc: t("step2Desc"),
+    },
+    {
+      icon: (
+        <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <Cloud size={52} color="#1d4ed8" fill="#1d4ed8" strokeWidth={1} />
+          <ArrowUp size={24} color="white" strokeWidth={4} style={{ position: "absolute", top: "14px" }} />
+        </div>
+      ),
+      number: "03",
+      title: t("step3Title"),
+      desc: t("step3Desc"),
+    },
+    {
+      icon: (
+        <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <Cpu size={52} color="#1d4ed8" strokeWidth={2.2} />
+          <span style={{ position: "absolute", fontWeight: 800, fontSize: "15px", color: "#1d4ed8", marginTop: "2px" }}>AI</span>
+        </div>
+      ),
+      number: "04",
+      title: t("step4Title"),
+      desc: t("step4Desc"),
+    },
+    {
+      icon: <Landmark size={46} color="#1d4ed8" fill="#1d4ed8" strokeWidth={1} />,
+      number: "05",
+      title: t("step5Title"),
+      desc: t("step5Desc"),
+    },
+    {
+      icon: (
+        <div style={{ width: "54px", height: "54px", background: "#3bba71", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <Check size={36} color="white" strokeWidth={4} />
+        </div>
+      ),
+      number: "06",
+      title: t("step6Title"),
+      desc: t("step6Desc"),
+    },
+  ];
+
   return (
     <section
       className="journey-section"
@@ -113,7 +116,7 @@ export default function JourneySection() {
                 letterSpacing: "-0.5px",
               }}
             >
-              Your Journey Begins Here
+              {t("titlePart1")} {t("titlePart2")} {t("titlePart3")}
             </h2>
 
             {/* Right Decorative Line */}

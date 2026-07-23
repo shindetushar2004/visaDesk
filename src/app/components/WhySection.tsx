@@ -10,6 +10,7 @@ import {
   User,
   Globe,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 // Beautiful inline custom round SVG flags (28px size as requested)
 const USFlag = () => (
@@ -78,23 +79,19 @@ const AUFlag = () => (
   </svg>
 );
 
-const features = [
-  { icon: <FileText size={24} color="#1a56db" />, title: "AI Document Analysis" },
-  { icon: <ScanFace size={24} color="#1a56db" />, title: "Passport OCR" },
-  { icon: <Activity size={24} color="#1a56db" />, title: "Live Applications Tracking" },
-  { icon: <Users size={24} color="#1a56db" />, title: "Expert Consultants" },
-  { icon: <Shield size={24} color="#1a56db" />, title: "Government Compliance" },
-  { icon: <User size={24} color="#1a56db" />, title: "Dedicated Relationship Manager" },
-];
-
-const mapCountries = [
-  { flag: <USFlag />, name: "USA",       num: "15", days: "Days", rate: "99% Success" },
-  { flag: <CAFlag />, name: "Canada",    num: "20", days: "Days", rate: "99% Success" },
-  { flag: <UKFlag />, name: "UK",        num: "15", days: "Days", rate: "99% Success" },
-  { flag: <AUFlag />, name: "Australia", num: "20", days: "Days", rate: "99% Success" },
-];
 
 export default function WhySection() {
+  const t = useTranslations("Why");
+
+  const features = [
+    { icon: <FileText size={24} color="#1a56db" />, title: t("f1") },
+    { icon: <ScanFace size={24} color="#1a56db" />, title: t("f2") },
+    { icon: <Activity size={24} color="#1a56db" />, title: t("f3") },
+    { icon: <Users size={24} color="#1a56db" />, title: t("f4") },
+    { icon: <Shield size={24} color="#1a56db" />, title: t("f5") },
+    { icon: <User size={24} color="#1a56db" />, title: t("f6") },
+  ];
+
   return (
     <section className="why-section" style={{ background: "#f8fafc", padding: "70px 0" }}>
       <div
@@ -116,7 +113,7 @@ export default function WhySection() {
             transition={{ duration: 0.5 }}
             style={{ fontSize: "24px", fontWeight: "800", color: "#0f172a", marginTop: "32px", marginBottom: "28px" }}
           >
-            Why <span style={{ color: "#1a56db" }}>VisaDesk</span> is Different?
+            {t("title1")} <span style={{ color: "#1a56db" }}>VisaDesk</span> {t("title2")}
           </motion.h2>
 
           <div

@@ -12,56 +12,58 @@ import {
   GraduationCap,
   Briefcase,
   Users,
-  Building2,
   Stethoscope,
   TrendingUp,
+  Building2,
 } from "lucide-react";
-
-const aiFeatures = [
-  {
-    icon: <ScanText size={16} color="#1a56db" />,
-    title: "AI Document Scanner",
-    desc: "Advanced OCR & document detection",
-  },
-  {
-    icon: <ScanFace size={16} color="#1a56db" />,
-    title: "OCR Passport Reading",
-    desc: "Extracts data instantly & accurately",
-  },
-  {
-    icon: <Copy size={16} color="#1a56db" />,
-    title: "Duplicate Detection",
-    desc: "Ensures authenticity & reduces errors",
-  },
-  {
-    icon: <ClipboardList size={16} color="#1a56db" />,
-    title: "Smart Checklist",
-    desc: "Personalised document checklist",
-  },
-  {
-    icon: <Activity size={16} color="#1a56db" />,
-    title: "Real-Time Status Tracking",
-    desc: "Track your application every step",
-  },
-  {
-    icon: <Building size={16} color="#1a56db" />,
-    title: "Embassy Updates",
-    desc: "Stay informed with live embassy updates",
-  },
-];
-
-const visaServices = [
-  { icon: <Plane size={22} color="#1a56db" />, title: "Tourist Visa", bg: "#eff6ff" },
-  { icon: <Briefcase size={22} color="#1a56db" />, title: "Business Visa", bg: "#eff6ff" },
-  { icon: <GraduationCap size={22} color="#1a56db" />, title: "Student Visa", bg: "#eff6ff" },
-  { icon: <Briefcase size={22} color="#059669" />, title: "Work Visa", bg: "#ecfdf5" },
-  { icon: <Users size={22} color="#7c3aed" />, title: "PR & Immigration", bg: "#f5f3ff" },
-  { icon: <Users size={22} color="#dc2626" />, title: "Dependent Visa", bg: "#fef2f2" },
-  { icon: <Building2 size={22} color="#1a56db" />, title: "Corporate Visa", bg: "#eff6ff" },
-  { icon: <Stethoscope size={22} color="#059669" />, title: "Medical Visa", bg: "#ecfdf5" },
-];
+import { useTranslations } from "next-intl";
 
 export default function AiProcessSection() {
+  const t = useTranslations("AiProcess");
+
+  const aiFeatures = [
+    {
+      icon: <ScanText size={16} color="#1a56db" />,
+      title: t("f1Title"),
+      desc: t("f1Desc"),
+    },
+    {
+      icon: <ScanFace size={16} color="#1a56db" />,
+      title: t("f2Title"),
+      desc: t("f2Desc"),
+    },
+    {
+      icon: <Copy size={16} color="#1a56db" />,
+      title: t("f3Title"),
+      desc: t("f3Desc"),
+    },
+    {
+      icon: <ClipboardList size={16} color="#1a56db" />,
+      title: t("f4Title"),
+      desc: t("f4Desc"),
+    },
+    {
+      icon: <Activity size={16} color="#1a56db" />,
+      title: t("f5Title"),
+      desc: t("f5Desc"),
+    },
+    {
+      icon: <Building size={16} color="#1a56db" />,
+      title: t("f6Title"),
+      desc: t("f6Desc"),
+    },
+  ];
+
+  const visaServices = [
+    { icon: <Plane size={22} color="#1a56db" />, title: t("touristVisa"), bg: "#eff6ff" },
+    { icon: <Briefcase size={22} color="#1a56db" />, title: t("businessVisa"), bg: "#eff6ff" },
+    { icon: <GraduationCap size={22} color="#1a56db" />, title: t("studentVisa"), bg: "#eff6ff" },
+    { icon: <Briefcase size={22} color="#059669" />, title: t("workVisa"), bg: "#ecfdf5" },
+    { icon: <Users size={22} color="#7c3aed" />, title: t("prImmigration"), bg: "#f5f3ff" },
+    { icon: <Users size={22} color="#dc2626" />, title: t("dependentVisa"), bg: "#fef2f2" },
+    { icon: <Building2 size={22} color="#1a56db" />, title: t("corporateVisa"), bg: "#eff6ff" },
+    { icon: <Stethoscope size={22} color="#059669" />, title: t("medicalVisa"), bg: "#ecfdf5" },
+  ];
   return (
     <section className="ai-section" style={{ background: "#ffffff", padding: "60px 0" }}>
       <div
@@ -89,7 +91,7 @@ export default function AiProcessSection() {
                 marginBottom: "6px",
               }}
             >
-              AI-Powered{" "}
+              {t("titlePart1")}{" "}
               <span
                 style={{
                   background: "linear-gradient(135deg, #1a56db, #3b82f6)",
@@ -97,9 +99,9 @@ export default function AiProcessSection() {
                   WebkitTextFillColor: "transparent",
                 }}
               >
-                Smart
+                {t("titlePart2")}
               </span>{" "}
-              Process
+              {t("titlePart3")}
             </h2>
           </motion.div>
 
@@ -188,7 +190,7 @@ export default function AiProcessSection() {
               <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#ef4444" }} />
               <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#f59e0b" }} />
               <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#10b981" }} />
-              <div style={{ flex: 1, textAlign: "center", fontSize: "10px", fontWeight: "600", color: "#9ca3af", letterSpacing: "0.5px" }}>Application Overview</div>
+              <div style={{ flex: 1, textAlign: "center", fontSize: "10px", fontWeight: "600", color: "#9ca3af", letterSpacing: "0.5px" }}>{t("appOverview")}</div>
             </div>
 
             {/* Dashboard Content */}
@@ -196,16 +198,16 @@ export default function AiProcessSection() {
               {/* Header Info */}
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
                 <div>
-                  <div style={{ fontSize: "14px", fontWeight: "700", color: "#111827" }}>US Tourist Visa</div>
-                  <div style={{ fontSize: "10px", color: "#6b7280" }}>Application ID: #US-8492</div>
+                  <div style={{ fontSize: "14px", fontWeight: "700", color: "#111827" }}>{t("usTouristVisa")}</div>
+                  <div style={{ fontSize: "10px", color: "#6b7280" }}>{t("appId")}</div>
                 </div>
-                <div style={{ background: "#dbeafe", color: "#1a56db", padding: "4px 8px", borderRadius: "12px", fontSize: "10px", fontWeight: "700" }}>In Progress</div>
+                <div style={{ background: "#dbeafe", color: "#1a56db", padding: "4px 8px", borderRadius: "12px", fontSize: "10px", fontWeight: "700" }}>{t("inProgress")}</div>
               </div>
 
               {/* Progress Bar */}
               <div style={{ marginBottom: "24px" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px", fontSize: "11px", fontWeight: "600", color: "#4b5563" }}>
-                  <span>Completion</span>
+                  <span>{t("completion")}</span>
                   <span>75%</span>
                 </div>
                 <div style={{ height: "6px", background: "#f3f4f6", borderRadius: "3px", overflow: "hidden" }}>
@@ -216,26 +218,26 @@ export default function AiProcessSection() {
               {/* Stats Grid */}
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", marginBottom: "24px" }}>
                 <div style={{ background: "#f8fafc", padding: "12px", borderRadius: "10px", border: "1px solid #f3f4f6" }}>
-                  <div style={{ fontSize: "10px", color: "#6b7280", marginBottom: "4px" }}>Documents</div>
-                  <div style={{ fontSize: "13px", fontWeight: "700", color: "#111827" }}>12/15 Uploaded</div>
+                  <div style={{ fontSize: "10px", color: "#6b7280", marginBottom: "4px" }}>{t("documents")}</div>
+                  <div style={{ fontSize: "13px", fontWeight: "700", color: "#111827" }}>{t("uploaded")}</div>
                 </div>
                 <div style={{ background: "#f8fafc", padding: "12px", borderRadius: "10px", border: "1px solid #f3f4f6" }}>
-                  <div style={{ fontSize: "10px", color: "#6b7280", marginBottom: "4px" }}>AI Verification</div>
-                  <div style={{ fontSize: "13px", fontWeight: "700", color: "#10b981" }}>Completed</div>
+                  <div style={{ fontSize: "10px", color: "#6b7280", marginBottom: "4px" }}>{t("aiVerification")}</div>
+                  <div style={{ fontSize: "13px", fontWeight: "700", color: "#10b981" }}>{t("completed")}</div>
                 </div>
               </div>
 
               {/* Recent Activity */}
               <div>
-                <div style={{ fontSize: "12px", fontWeight: "700", color: "#111827", marginBottom: "12px" }}>Recent Activity</div>
+                <div style={{ fontSize: "12px", fontWeight: "700", color: "#111827", marginBottom: "12px" }}>{t("recentActivity")}</div>
                 <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
                     <div style={{ width: "24px", height: "24px", borderRadius: "50%", background: "#d1fae5", display: "flex", alignItems: "center", justifyContent: "center" }}>
                       <div style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#10b981" }} />
                     </div>
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: "11px", fontWeight: "600", color: "#374151" }}>Passport Verified</div>
-                      <div style={{ fontSize: "9px", color: "#9ca3af" }}>Today, 10:23 AM</div>
+                      <div style={{ fontSize: "11px", fontWeight: "600", color: "#374151" }}>{t("passportVerified")}</div>
+                      <div style={{ fontSize: "9px", color: "#9ca3af" }}>{t("today")}</div>
                     </div>
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
@@ -243,8 +245,8 @@ export default function AiProcessSection() {
                       <div style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#10b981" }} />
                     </div>
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: "11px", fontWeight: "600", color: "#374151" }}>Financials Uploaded</div>
-                      <div style={{ fontSize: "9px", color: "#9ca3af" }}>Yesterday, 04:15 PM</div>
+                      <div style={{ fontSize: "11px", fontWeight: "600", color: "#374151" }}>{t("financialsUploaded")}</div>
+                      <div style={{ fontSize: "9px", color: "#9ca3af" }}>{t("yesterday")}</div>
                     </div>
                   </div>
                 </div>
@@ -270,7 +272,7 @@ export default function AiProcessSection() {
                 textAlign: "center"
               }}
             >
-              Our <span style={{ color: "#1a56db" }}>Visa</span> Services
+              {t("servicesTitle1")} <span style={{ color: "#1a56db" }}>{t("servicesTitle2")}</span> {t("servicesTitle3")}
             </h2>
           </motion.div>
 

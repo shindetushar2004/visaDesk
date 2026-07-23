@@ -2,8 +2,10 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function CTASection() {
+  const t = useTranslations("CTA");
   return (
     <section className="cta-section" style={{ padding: "80px 0", background: "#f8fafc" }}>
       <div className="container-custom">
@@ -109,9 +111,9 @@ export default function CTASection() {
                 letterSpacing: "-0.3px",
               }}
             >
-              <span className="nowrap-mobile">Let's Build Your Global</span>{" "}
+              <span className="nowrap-mobile">{t("titlePart1")}</span>{" "}
               <br className="mobile-only-br" />
-              <span className="nowrap-mobile">Future Together</span>
+              <span className="nowrap-mobile">{t("titlePart2")}</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
@@ -126,8 +128,7 @@ export default function CTASection() {
                 marginBottom: "24px",
               }}
             >
-              Talk to our experts and take the first step towards your dream
-              destination.
+              {t("desc")}
             </motion.p>
 
             {/* Buttons */}
@@ -166,7 +167,7 @@ export default function CTASection() {
                   transition: "all 0.25s ease",
                 }}
               >
-                Get Started Now
+                {t("getStarted")}
                 <ArrowRight size={17} />
               </motion.button>
 
@@ -193,7 +194,7 @@ export default function CTASection() {
                   transition: "all 0.25s ease",
                 }}
               >
-                Schedule Meeting
+                {t("scheduleMeeting")}
               </motion.button>
             </motion.div>
           </div>

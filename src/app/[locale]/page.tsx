@@ -1,18 +1,20 @@
-import Navbar from "./components/Navbar";
-import HeroSection from "./components/HeroSection";
-import JourneySection from "./components/JourneySection";
-import WhySection from "./components/WhySection";
-import AiProcessSection from "./components/AiProcessSection";
-import StatsSection from "./components/StatsSection";
-import SuccessStories from "./components/SuccessStories";
-import LatestInsights from "./components/LatestInsights";
-import CTASection from "./components/CTASection";
-import ContactSection from "./components/ContactSection";
-import Footer from "./components/Footer";
+import Navbar from "../components/Navbar";
+import HeroSection from "../components/HeroSection";
+import JourneySection from "../components/JourneySection";
+import WhySection from "../components/WhySection";
+import AiProcessSection from "../components/AiProcessSection";
+import StatsSection from "../components/StatsSection";
+import SuccessStories from "../components/SuccessStories";
+import LatestInsights from "../components/LatestInsights";
+import CTASection from "../components/CTASection";
+import ContactSection from "../components/ContactSection";
+import Footer from "../components/Footer";
+import LanguageModal from "../components/LanguageModal";
 
 export default function Home() {
   return (
     <main style={{ minHeight: "100vh", overflowX: "hidden" }}>
+      <LanguageModal />
       <Navbar />
       <div id="hero"><HeroSection /></div>
       <div id="process"><JourneySection /></div>

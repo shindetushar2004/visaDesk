@@ -3,29 +3,31 @@
 import { motion } from "framer-motion";
 import React, { useRef } from "react";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-
-const mainBlog = {
-  date: "MAY 15, 2024",
-  title: "New Updates to Schengen\nVisa Requirements 2024",
-  img: "/blog-1.png",
-};
-
-const sideBlogs = [
-  {
-    date: "MAY 05, 2024",
-    title: "How to Prepare for Your Visa Interview",
-    img: "/blog-2.png",
-  },
-  {
-    date: "APR 28, 2024",
-    title: "Top 7 Countries for International Students",
-    img: "/blog-3.png",
-  },
-];
+import { useTranslations } from "next-intl";
 
 export default function LatestInsights() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const t = useTranslations("Insights");
   
+  const mainBlog = {
+    date: t("date1"),
+    title: t("title1"),
+    img: "/blog-1.png",
+  };
+
+  const sideBlogs = [
+    {
+      date: t("date2"),
+      title: t("title2"),
+      img: "/blog-2.png",
+    },
+    {
+      date: t("date3"),
+      title: t("title3"),
+      img: "/blog-3.png",
+    },
+  ];
+
   const scrollCarousel = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
       const scrollAmount = direction === 'left' ? -window.innerWidth : window.innerWidth;
@@ -53,7 +55,7 @@ export default function LatestInsights() {
             letterSpacing: "-0.5px",
           }}
         >
-          Latest Insights
+          {t("title")}
         </h2>
         <motion.a
           href="#"
@@ -69,7 +71,7 @@ export default function LatestInsights() {
             transition: "all 0.2s ease",
           }}
         >
-          View All Posts
+          {t("viewAll")}
           <ArrowRight size={16} />
         </motion.a>
       </div>
@@ -95,7 +97,7 @@ export default function LatestInsights() {
                 <div className="mobile-blog-date">{blog.date}</div>
                 <h3 className="mobile-blog-title">{blog.title.replace('\n', ' ')}</h3>
                 <div className="mobile-blog-readmore">
-                  Read More <ArrowRight size={14} />
+                  {t("readMore")} <ArrowRight size={14} />
                 </div>
               </div>
             </div>
@@ -152,7 +154,7 @@ export default function LatestInsights() {
               {mainBlog.title}
             </h3>
             <div style={{ fontSize: "14px", color: "#93c5fd", display: "flex", alignItems: "center", gap: "6px", fontWeight: "700" }}>
-              Read More <ArrowRight size={15} />
+              {t("readMore")} <ArrowRight size={15} />
             </div>
           </div>
         </motion.div>
@@ -190,7 +192,7 @@ export default function LatestInsights() {
                   {blog.title}
                 </h3>
                 <div style={{ fontSize: "13px", color: "#1a56db", display: "flex", alignItems: "center", gap: "6px", fontWeight: "700" }}>
-                  Read More <ArrowRight size={14} />
+                  {t("readMore")} <ArrowRight size={14} />
                 </div>
               </div>
             </motion.div>

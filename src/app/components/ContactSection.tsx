@@ -3,39 +3,42 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock, Facebook, Linkedin, Instagram, Youtube, Send, ChevronDown } from "lucide-react";
-
-const contactItems = [
-  { Icon: Phone,  line1: "+1 (555) 123-4567",           line2: null },
-  { Icon: Mail,   line1: "info@visadesk.com",            line2: null },
-  { Icon: MapPin, line1: "123 Global Avenue, Suite 500", line2: "New York, NY 10001, USA" },
-  { Icon: Clock,  line1: "Mon - Sat: 9:00 AM - 7:00 PM", line2: null },
-];
-
-const socials = [Facebook, Linkedin, Instagram, Youtube];
-
-const inputBase: React.CSSProperties = {
-  width: "100%",
-  boxSizing: "border-box",
-  padding: "14px 16px",
-  borderRadius: "8px",
-  border: "1px solid #e2e8f0",
-  fontSize: "14px",
-  outline: "none",
-  background: "#f8fafc",
-  color: "#1e293b",
-  transition: "border-color 0.2s, box-shadow 0.2s",
-  fontFamily: "Inter, sans-serif",
-};
-
-const labelBase: React.CSSProperties = {
-  fontSize: "13px",
-  fontWeight: "600",
-  color: "#475569",
-  marginBottom: "8px",
-  display: "block",
-};
+import { useTranslations } from "next-intl";
 
 export default function ContactSection() {
+  const t = useTranslations("Contact");
+
+  const contactItems = [
+    { Icon: Phone,  line1: "+1 (555) 123-4567",           line2: null },
+    { Icon: Mail,   line1: "info@visadesk.com",            line2: null },
+    { Icon: MapPin, line1: t("address1"), line2: t("address2") },
+    { Icon: Clock,  line1: t("hours"), line2: null },
+  ];
+
+  const socials = [Facebook, Linkedin, Instagram, Youtube];
+
+  const inputBase: React.CSSProperties = {
+    width: "100%",
+    boxSizing: "border-box",
+    padding: "14px 16px",
+    borderRadius: "8px",
+    border: "1px solid #e2e8f0",
+    fontSize: "14px",
+    outline: "none",
+    background: "#f8fafc",
+    color: "#1e293b",
+    transition: "border-color 0.2s, box-shadow 0.2s",
+    fontFamily: "Inter, sans-serif",
+  };
+
+  const labelBase: React.CSSProperties = {
+    fontSize: "13px",
+    fontWeight: "600",
+    color: "#475569",
+    marginBottom: "8px",
+    display: "block",
+  };
+
   const onFocus  = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     e.target.style.borderColor = "#1a56db";
     e.target.style.boxShadow   = "0 0 0 3px rgba(26,86,219,0.1)";
@@ -75,7 +78,7 @@ export default function ContactSection() {
             fontSize: "24px", fontWeight: "700", color: "#0f172a",
             marginBottom: "32px", letterSpacing: "-0.4px", lineHeight: "1.2"
           }}>
-            Get in Touch
+            {t("getInTouch")}
           </h2>
 
           <div className="contact-info-grid" style={{ display: "flex", flexDirection: "column", gap: "24px", marginBottom: "32px" }}>
@@ -122,38 +125,38 @@ export default function ContactSection() {
             fontSize: "20px", fontWeight: "700", color: "#1a56db",
             marginBottom: "28px", letterSpacing: "-0.2px"
           }}>
-            Send us a Message
+            {t("sendMessage")}
           </h2>
 
           {/* 2×2 grid */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }} className="form-grid">
             <div>
-              <label style={labelBase}>First Name</label>
+              <label style={labelBase}>{t("firstName")}</label>
               <input type="text" placeholder="John" style={inputBase} onFocus={onFocus} onBlur={onBlur} />
             </div>
             <div>
-              <label style={labelBase}>Last Name</label>
+              <label style={labelBase}>{t("lastName")}</label>
               <input type="text" placeholder="Doe" style={inputBase} onFocus={onFocus} onBlur={onBlur} />
             </div>
             <div>
-              <label style={labelBase}>Email Address</label>
+              <label style={labelBase}>{t("email")}</label>
               <input type="email" placeholder="john@example.com" style={inputBase} onFocus={onFocus} onBlur={onBlur} />
             </div>
             <div>
-              <label style={labelBase}>Phone Number</label>
+              <label style={labelBase}>{t("phone")}</label>
               <input type="tel" placeholder="+1 (555) 123-4567" style={inputBase} onFocus={onFocus} onBlur={onBlur} />
             </div>
             <div>
-              <label style={labelBase}>Country</label>
+              <label style={labelBase}>{t("country")}</label>
               
               {/* Desktop Native Select */}
               <div className="select-wrapper desktop-select-wrap" style={{ position: "relative" }}>
                 <select defaultValue="" className="contact-select" style={{ ...inputBase, appearance: "none", cursor: "pointer" } as React.CSSProperties} onFocus={onFocus} onBlur={onBlur}>
-                  <option value="" disabled>Select Country</option>
-                  <option value="us">United States</option>
-                  <option value="uk">United Kingdom</option>
-                  <option value="ca">Canada</option>
-                  <option value="au">Australia</option>
+                  <option value="" disabled>{t("selectCountry")}</option>
+                  <option value="us">{t("unitedStates")}</option>
+                  <option value="uk">{t("unitedKingdom")}</option>
+                  <option value="ca">{t("canada")}</option>
+                  <option value="au">{t("australia")}</option>
                 </select>
                 <div style={{ position: "absolute", right: "12px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none", display: "flex", alignItems: "center" }}>
                   <ChevronDown size={16} color="#64748b" />
@@ -168,7 +171,7 @@ export default function ContactSection() {
                   className="mobile-select-input"
                 >
                   <span style={{ color: "#1e293b", fontSize: "13px" }}>
-                    {countryVal || "Select Country"}
+                    {countryVal || t("selectCountry")}
                   </span>
                   <ChevronDown size={16} color="#64748b" />
                 </div>
@@ -177,7 +180,7 @@ export default function ContactSection() {
                   <>
                     <div style={{ position: "fixed", inset: 0, zIndex: 40 }} onClick={() => setCountryOpen(false)} />
                     <div className="mobile-dropdown-popup">
-                      {["United States", "United Kingdom", "Canada", "Australia"].map((opt) => (
+                      {[t("unitedStates"), t("unitedKingdom"), t("canada"), t("australia")].map((opt) => (
                         <div 
                           key={opt}
                           className="mobile-dropdown-option"
@@ -193,12 +196,12 @@ export default function ContactSection() {
             </div>
 
             <div>
-              <label style={labelBase}>Visa Type</label>
+              <label style={labelBase}>{t("visaType")}</label>
 
               {/* Desktop Native Select */}
               <div className="select-wrapper desktop-select-wrap" style={{ position: "relative" }}>
                 <select defaultValue="" className="contact-select" style={{ ...inputBase, appearance: "none", cursor: "pointer" } as React.CSSProperties} onFocus={onFocus} onBlur={onBlur}>
-                  <option value="" disabled>Select Visa Type</option>
+                  <option value="" disabled>{t("selectVisaType")}</option>
                   <option value="tourist">Tourist Visa</option>
                   <option value="student">Student Visa</option>
                   <option value="work">Work Visa</option>
@@ -217,7 +220,7 @@ export default function ContactSection() {
                   className="mobile-select-input"
                 >
                   <span style={{ color: "#1e293b", fontSize: "13px" }}>
-                    {visaVal || "Select Visa Type"}
+                    {visaVal || t("selectVisaType")}
                   </span>
                   <ChevronDown size={16} color="#64748b" />
                 </div>
@@ -244,9 +247,9 @@ export default function ContactSection() {
 
           {/* Message */}
           <div style={{ marginTop: "16px" }}>
-            <label style={labelBase}>Your Message</label>
+            <label style={labelBase}>{t("message")}</label>
             <textarea
-              placeholder="How can we help you?"
+              placeholder={t("placeholderMessage")}
               rows={4}
               style={{ ...inputBase, resize: "none", minHeight: "100px", lineHeight: "1.6" } as React.CSSProperties}
               onFocus={onFocus} onBlur={onBlur}
@@ -255,7 +258,7 @@ export default function ContactSection() {
 
           {/* Upload + Button row */}
           <div style={{ marginTop: "20px" }}>
-            <label style={labelBase}>Upload Documents</label>
+            <label style={labelBase}>{t("uploadDocuments")}</label>
             <div style={{ display: "flex", alignItems: "center", gap: "16px" }} className="form-actions">
               {/* Upload box */}
               <motion.div
@@ -272,11 +275,11 @@ export default function ContactSection() {
                 }}
               >
                 <div style={{ fontSize: "13px", color: "#64748b" }}>
-                  Drag & drop files here or{" "}
-                  <span style={{ color: "#1a56db", fontWeight: "600" }}>Browse</span>
+                  {t("dragDrop")}{" "}
+                  <span style={{ color: "#1a56db", fontWeight: "600" }}>{t("browse")}</span>
                 </div>
                 <div style={{ fontSize: "11px", color: "#94a3b8", marginTop: "4px" }}>
-                  (DOC, JPG, PNG, Max 10MB)
+                  {t("fileTypes")}
                 </div>
               </motion.div>
 
@@ -303,7 +306,7 @@ export default function ContactSection() {
                   transition: "all 0.25s ease",
                 }}
               >
-                Send Message <Send size={16} />
+                {t("submit")} <Send size={16} />
               </motion.button>
             </div>
           </div>

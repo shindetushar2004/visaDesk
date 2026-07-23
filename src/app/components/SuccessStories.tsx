@@ -3,37 +3,39 @@
 import { motion } from "framer-motion";
 import React, { useRef } from "react";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
-
-const testimonials = [
-  {
-    name: "Rahul Mehta",
-    visa: "Tourist Visa",
-    country: "USA",
-    countryColor: "#3b82f6",
-    date: "12 May 2024",
-    img: "/avatar-1.png",
-  },
-  {
-    name: "Priya Sharma",
-    visa: "Study Visa",
-    country: "CANADA",
-    countryColor: "#ef4444",
-    date: "08 Apr 2024",
-    img: "/avatar-2.png",
-  },
-  {
-    name: "Arjun Patel",
-    visa: "Work Visa",
-    country: "AUSTRALIA",
-    countryColor: "#3b82f6",
-    date: "26 Mar 2024",
-    img: "/avatar-3.png",
-  },
-];
+import { useTranslations } from "next-intl";
 
 export default function SuccessStories() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const t = useTranslations("Success");
   
+  const testimonials = [
+    {
+      name: t("t1Name"),
+      visa: t("t1Visa"),
+      country: t("t1Country"),
+      countryColor: "#3b82f6",
+      date: t("t1Date"),
+      img: "/avatar-1.png",
+    },
+    {
+      name: t("t2Name"),
+      visa: t("t2Visa"),
+      country: t("t2Country"),
+      countryColor: "#ef4444",
+      date: t("t2Date"),
+      img: "/avatar-2.png",
+    },
+    {
+      name: t("t3Name"),
+      visa: t("t3Visa"),
+      country: t("t3Country"),
+      countryColor: "#3b82f6",
+      date: t("t3Date"),
+      img: "/avatar-3.png",
+    },
+  ];
+
   const scrollCarousel = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
       const scrollAmount = direction === 'left' ? -window.innerWidth : window.innerWidth;
@@ -62,7 +64,7 @@ export default function SuccessStories() {
             letterSpacing: "-0.5px",
           }}
         >
-          Success Stories
+          {t("title")}
         </h2>
       </div>
 
@@ -98,7 +100,7 @@ export default function SuccessStories() {
               flex: 1,
             }}
           >
-            {testimonials.map((t, i) => (
+            {testimonials.map((testimonial, i) => (
               <motion.div
                 key={i}
                 whileHover={{
@@ -164,8 +166,8 @@ export default function SuccessStories() {
                     }}
                   >
                     <img
-                      src={t.img}
-                      alt={t.name}
+                      src={testimonial.img}
+                      alt={testimonial.name}
                       style={{
                         width: "100%",
                         height: "100%",
@@ -180,27 +182,27 @@ export default function SuccessStories() {
                       width: "74px",
                       height: "74px",
                       borderRadius: "50%",
-                      border: `2px solid ${t.countryColor}55`,
+                      border: `2px solid ${testimonial.countryColor}55`,
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                       transform: "rotate(-15deg)",
                       position: "relative",
                       flexShrink: 0,
-                      boxShadow: `0 4px 12px ${t.countryColor}15`,
+                      boxShadow: `0 4px 12px ${testimonial.countryColor}15`,
                     }}
                   >
                     <div
                       style={{
                         position: "absolute",
-                        border: `1.5px dashed ${t.countryColor}75`,
+                        border: `1.5px dashed ${testimonial.countryColor}75`,
                         inset: "5px",
                         borderRadius: "50%",
                       }}
                     />
                     <span
                       style={{
-                        color: t.countryColor,
+                        color: testimonial.countryColor,
                         fontSize: "12px",
                         fontWeight: "900",
                         letterSpacing: "0.4px",
@@ -208,7 +210,7 @@ export default function SuccessStories() {
                         textAlign: "center",
                       }}
                     >
-                      {t.country}
+                      {testimonial.country}
                     </span>
                   </div>
                 </div>
@@ -224,13 +226,13 @@ export default function SuccessStories() {
                       marginBottom: "4px",
                     }}
                   >
-                    {t.name}
+                    {testimonial.name}
                   </div>
                   <div style={{ fontSize: "13px", color: "#64748b" }}>
-                    <span style={{ color: t.countryColor, fontWeight: "700" }}>
-                      {t.country}
+                    <span style={{ color: testimonial.countryColor, fontWeight: "700" }}>
+                      {testimonial.country}
                     </span>{" "}
-                    {t.visa}
+                    {testimonial.visa}
                   </div>
                 </div>
 
@@ -312,7 +314,7 @@ export default function SuccessStories() {
                         lineHeight: "1",
                       }}
                     >
-                      Approved on
+                      {t("approvedOn")}
                     </span>
                     <span
                       style={{
@@ -323,7 +325,7 @@ export default function SuccessStories() {
                         marginTop: "4px",
                       }}
                     >
-                      {t.date}
+                      {testimonial.date}
                     </span>
                   </div>
                   <div style={{ display: "flex", gap: "3px" }}>

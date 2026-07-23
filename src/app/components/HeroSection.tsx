@@ -4,7 +4,10 @@ import { motion } from "framer-motion";
 import { ArrowRight, ShieldCheck, Clock, HeadphonesIcon } from "lucide-react";
 import Image from "next/image";
 
+import { useTranslations } from "next-intl";
+
 export default function HeroSection() {
+  const t = useTranslations("Hero");
   return (
     <section
       className="hero-section-wrapper"
@@ -83,7 +86,7 @@ export default function HeroSection() {
               }}
             >
               <span style={{ fontSize: "16px" }}>✨</span>
-              AI Powered Visa Consultancy
+              {t("aiBadge")}
             </motion.div>
 
             {/* Headline */}
@@ -101,7 +104,7 @@ export default function HeroSection() {
                 letterSpacing: "-0.02em",
               }}
             >
-              Your Passport to
+              {t("titlePart1")}
             </motion.h1>
             <motion.h1
               className="hero-heading gradient-heading"
@@ -119,7 +122,7 @@ export default function HeroSection() {
                 letterSpacing: "-0.02em",
               }}
             >
-              Global Opportunities
+              {t("titlePart2")}
             </motion.h1>
 
             {/* Subtitle */}
@@ -136,9 +139,7 @@ export default function HeroSection() {
                 maxWidth: "480px",
               }}
             >
-              Helping students, professionals, families, and businesses
-              obtain visas with AI-powered document verification and
-              expert immigration guidance.
+              {t("description")}
             </motion.p>
 
             {/* Buttons */}
@@ -167,7 +168,7 @@ export default function HeroSection() {
                   boxShadow: "0 8px 20px rgba(17, 59, 186, 0.25)",
                 }}
               >
-                Start Your Journey
+                {t("startJourney")}
                 <ArrowRight size={18} />
               </motion.button>
 
@@ -185,7 +186,7 @@ export default function HeroSection() {
                   cursor: "pointer",
                 }}
               >
-                Book Consultation
+                {t("talkToExpert")}
               </motion.button>
             </motion.div>
 

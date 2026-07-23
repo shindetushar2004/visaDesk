@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Facebook, Linkedin, Instagram, Youtube, Send } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const linkStyle: React.CSSProperties = {
   color: "rgba(255,255,255,0.58)",
@@ -25,6 +26,7 @@ const hoverLink = (enter: boolean, e: React.MouseEvent<HTMLAnchorElement>) => {
 };
 
 export default function Footer() {
+  const t = useTranslations("Footer");
   return (
     <footer className="footer-container" style={{ background: "#0b1120", color: "white", paddingTop: "56px" }}>
       <div className="container-custom">
@@ -64,7 +66,7 @@ export default function Footer() {
               fontSize: "12.5px", color: "rgba(255,255,255,0.55)",
               lineHeight: "1.7", maxWidth: "230px", marginBottom: "22px",
             }}>
-              Your trusted partner for global mobility. We make the visa process simple, fast and hassle-free with AI and expert guidance.
+              {t("desc")}
             </p>
 
             {/* Social Icons */}
@@ -90,72 +92,72 @@ export default function Footer() {
 
           {/* ── Col 2: Quick Links ── */}
           <div>
-            <h4 style={headingStyle}>Quick Links</h4>
+            <h4 style={headingStyle}>{t("quickLinks")}</h4>
             <ul className="desktop-only" style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "11px" }}>
-              {["Home", "Who We Are", "Services", "Countries", "Process", "Blog", "Contact"].map((item) => (
+              {["home", "whoWeAre", "services", "countries", "process", "blog", "contact"].map((item) => (
                 <li key={item}>
-                  <a href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>{item}</a>
+                  <a href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>{t(item as any)}</a>
                 </li>
               ))}
             </ul>
             <div className="mobile-only-flex mobile-quick-links-row">
-              {["Home", "About", "Services", "Process", "Success Stories", "Blog", "Contact"].map((item) => (
-                <a key={item} href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>{item}</a>
+              {["home", "about", "services", "process", "successStories", "blog", "contact"].map((item) => (
+                <a key={item} href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>{t(item as any)}</a>
               ))}
             </div>
           </div>
 
           {/* ── Col 3: Our Services ── */}
           <div>
-            <h4 style={headingStyle}>Our Services</h4>
+            <h4 style={headingStyle}>{t("ourServices")}</h4>
             <ul className="desktop-only" style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "11px" }}>
-              {["Tourist Visa", "Business Visa", "Student Visa", "Work Visa", "PR & Immigration", "Dependent Visa", "Corporate Visa", "Medical Visa"].map((item) => (
+              {["touristVisa", "businessVisa", "studentVisa", "workVisa", "prImmigration", "dependentVisa", "corporateVisa", "medicalVisa"].map((item) => (
                 <li key={item}>
-                  <a href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>{item}</a>
+                  <a href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>{t(item as any)}</a>
                 </li>
               ))}
             </ul>
             <div className="mobile-only-flex mobile-services-row">
-              {["Tourist Visa", "Student Visa", "Business Visa", "Immigration"].map((item) => (
-                <a key={item} href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>{item}</a>
+              {["touristVisa", "studentVisa", "businessVisa", "immigration"].map((item) => (
+                <a key={item} href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>{t(item as any)}</a>
               ))}
             </div>
           </div>
 
           {/* ── Col 4: Popular Countries ── */}
           <div>
-            <h4 style={headingStyle}>Popular Countries</h4>
+            <h4 style={headingStyle}>{t("popularCountries")}</h4>
             <ul className="desktop-only" style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "11px" }}>
-              {["Canada", "USA", "UK", "Australia", "Germany", "France", "Italy"].map((item) => (
+              {["canada", "usa", "uk", "australia", "germany", "france", "italy"].map((item) => (
                 <li key={item}>
-                  <a href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>{item}</a>
+                  <a href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>{t(item as any)}</a>
                 </li>
               ))}
             </ul>
             <div className="mobile-only-flex mobile-countries-row">
-              <a href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>USA</a>
-              <a href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>Canada</a>
-              <a href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>UK</a>
-              <a href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>Australia</a>
-              <a href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>Germany</a>
+              <a href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>{t("usa")}</a>
+              <a href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>{t("canada")}</a>
+              <a href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>{t("uk")}</a>
+              <a href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>{t("australia")}</a>
+              <a href="#" style={linkStyle} onMouseEnter={(e) => hoverLink(true, e)} onMouseLeave={(e) => hoverLink(false, e)}>{t("germany")}</a>
             </div>
           </div>
 
           {/* ── Col 5: Subscribe to Newsletter ── */}
           <div>
-            <h4 style={headingStyle}>Subscribe to Newsletter</h4>
+            <h4 style={headingStyle}>{t("subscribeTitle")}</h4>
             <p className="newsletter-desc" style={{
               fontSize: "12.5px", color: "rgba(255,255,255,0.55)",
               lineHeight: "1.65", marginBottom: "18px",
             }}>
-              Get latest updates, visa news and exclusive tips straight to your inbox.
+              {t("subscribeDesc")}
             </p>
 
             {/* Email Input Row */}
             <div style={{ display: "flex", gap: "0", borderRadius: "9px", overflow: "hidden", border: "1px solid rgba(255,255,255,0.15)" }}>
               <input
                 type="email"
-                placeholder="Enter your email"
+                placeholder={t("enterEmail")}
                 style={{
                   flex: 1,
                   padding: "12px 14px",
@@ -200,9 +202,9 @@ export default function Footer() {
           }}
           className="footer-bottom"
         >
-          <div>© 2024 VisaDesk Global. All Rights Reserved.</div>
+          <div>{t("rights")}</div>
           <div className="footer-links" style={{ display: "flex", gap: "28px" }}>
-            {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((item) => (
+            {["privacy", "terms", "cookie"].map((item) => (
               <a
                 key={item}
                 href="#"
@@ -210,7 +212,7 @@ export default function Footer() {
                 onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.45)")}
               >
-                {item}
+                {t(item as any)}
               </a>
             ))}
           </div>

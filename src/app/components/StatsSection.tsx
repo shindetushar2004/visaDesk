@@ -11,37 +11,39 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-
-const stats = [
-  {
-    icon: <FileText size={30} color="white" />,
-    value: "25K+",
-    label: "Applications Processed",
-  },
-  {
-    icon: <ShieldCheck size={30} color="white" />,
-    value: "99%",
-    label: "Visa Approval Success Rate",
-  },
-  {
-    icon: <Globe size={30} color="white" />,
-    value: "50+",
-    label: "Countries Served",
-  },
-  {
-    icon: <Award size={30} color="white" />,
-    value: "10+",
-    label: "Years of Experience",
-  },
-  {
-    icon: <Users size={30} color="white" />,
-    value: "100+",
-    label: "Visa & Legal Experts",
-  },
-];
+import { useTranslations } from "next-intl";
 
 export default function StatsSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const t = useTranslations("Stats");
+
+  const stats = [
+    {
+      icon: <FileText size={30} color="white" />,
+      value: "25K+",
+      label: t("appsProcessed"),
+    },
+    {
+      icon: <ShieldCheck size={30} color="white" />,
+      value: "99%",
+      label: t("approvalRate"),
+    },
+    {
+      icon: <Globe size={30} color="white" />,
+      value: "50+",
+      label: t("countriesServed"),
+    },
+    {
+      icon: <Award size={30} color="white" />,
+      value: "10+",
+      label: t("yearsExp"),
+    },
+    {
+      icon: <Users size={30} color="white" />,
+      value: "100+",
+      label: t("experts"),
+    },
+  ];
   return (
     <section
       className="stats-section"
